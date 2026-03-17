@@ -1,0 +1,941 @@
+{
+  "1": {
+    "title": "Beginner",
+    "modules": [
+      {
+        "module": 1,
+        "title": "Hello!",
+        "topic": "Greetings",
+        "vocab": [
+          {
+            "w": "hello",
+            "e": "\ud83d\udc4b",
+            "t": "\u043f\u0440\u0438\u0432\u0435\u0442"
+          },
+          {
+            "w": "goodbye",
+            "e": "\ud83d\udc4b",
+            "t": "\u043f\u043e\u043a\u0430"
+          },
+          {
+            "w": "please",
+            "e": "\ud83d\ude4f",
+            "t": "\u043f\u043e\u0436\u0430\u043b\u0443\u0439\u0441\u0442\u0430"
+          },
+          {
+            "w": "thank you",
+            "e": "\ud83d\ude0a",
+            "t": "\u0441\u043f\u0430\u0441\u0438\u0431\u043e"
+          },
+          {
+            "w": "sorry",
+            "e": "\ud83d\ude14",
+            "t": "\u0438\u0437\u0432\u0438\u043d\u0438"
+          },
+          {
+            "w": "yes",
+            "e": "\u2705",
+            "t": "\u0434\u0430"
+          },
+          {
+            "w": "no",
+            "e": "\u274c",
+            "t": "\u043d\u0435\u0442"
+          },
+          {
+            "w": "excuse me",
+            "e": "\ud83d\ude4b",
+            "t": "\u0438\u0437\u0432\u0438\u043d\u0438\u0442\u0435"
+          },
+          {
+            "w": "good morning",
+            "e": "\ud83c\udf05",
+            "t": "\u0434\u043e\u0431\u0440\u043e\u0435 \u0443\u0442\u0440\u043e"
+          },
+          {
+            "w": "good evening",
+            "e": "\ud83c\udf06",
+            "t": "\u0434\u043e\u0431\u0440\u044b\u0439 \u0432\u0435\u0447\u0435\u0440"
+          },
+          {
+            "w": "see you",
+            "e": "\ud83d\udc4b",
+            "t": "\u0443\u0432\u0438\u0434\u0438\u043c\u0441\u044f"
+          },
+          {
+            "w": "nice to meet you",
+            "e": "\ud83e\udd1d",
+            "t": "\u043f\u0440\u0438\u044f\u0442\u043d\u043e \u043f\u043e\u0437\u043d\u0430\u043a\u043e\u043c\u0438\u0442\u044c\u0441\u044f"
+          }
+        ],
+        "grammar": {
+          "p": "Hello! I'm [name]. What's your name?",
+          "e": [
+            "Hello! I'm Anna.",
+            "Hi! I'm Tom."
+          ]
+        },
+        "listening": "A: Hello! I'm Anna. What's your name?\nB: Hi Anna! I'm Tom.\nA: Nice to meet you!",
+        "speaking": {
+          "t": "Introduce yourself",
+          "p": [
+            "Hello! I'm...",
+            "What's your name?",
+            "Nice to meet you!"
+          ]
+        },
+        "reading": "Hi! My name is Anna. I'm from London. This is my family. This is my mother. Her name is Mary. This is my father. His name is John.",
+        "writing": "Write about yourself: name, where you're from, family.",
+        "exercises": [
+          {
+            "q": "How do you say '\u043f\u0440\u0438\u0432\u0435\u0442'?",
+            "o": [
+              "Hello",
+              "Goodbye",
+              "Sorry",
+              "Thanks"
+            ],
+            "a": 0
+          },
+          {
+            "q": "Complete: Hello! I'm ___",
+            "o": [
+              "Anna",
+              "You",
+              "He",
+              "She"
+            ],
+            "a": 0
+          },
+          {
+            "q": "Opposite of 'hello'?",
+            "o": [
+              "Goodbye",
+              "Please",
+              "Thanks",
+              "Sorry"
+            ],
+            "a": 0
+          },
+          {
+            "q": "'\u0421\u043f\u0430\u0441\u0438\u0431\u043e' is...",
+            "o": [
+              "Thank you",
+              "Please",
+              "Sorry",
+              "Hello"
+            ],
+            "a": 0
+          },
+          {
+            "q": "Complete: Nice to meet ___",
+            "o": [
+              "you",
+              "me",
+              "him",
+              "her"
+            ],
+            "a": 0
+          },
+          {
+            "q": "When say 'excuse me'?",
+            "o": [
+              "Need attention",
+              "Say goodbye",
+              "Thank someone",
+              "Say yes"
+            ],
+            "a": 0
+          },
+          {
+            "q": "Complete: Good ___!",
+            "o": [
+              "morning",
+              "night",
+              "evening",
+              "day"
+            ],
+            "a": 0
+          },
+          {
+            "q": "'Sorry' means...",
+            "o": [
+              "\u0418\u0437\u0432\u0438\u043d\u0438",
+              "\u041f\u0440\u0438\u0432\u0435\u0442",
+              "\u041f\u043e\u043a\u0430",
+              "\u0421\u043f\u0430\u0441\u0438\u0431\u043e"
+            ],
+            "a": 0
+          },
+          {
+            "q": "Complete: See you ___!",
+            "o": [
+              "later",
+              "now",
+              "before",
+              "ago"
+            ],
+            "a": 0
+          },
+          {
+            "q": "'Thank you' is...",
+            "o": [
+              "Formal & Informal",
+              "Formal only",
+              "Informal only",
+              "Neither"
+            ],
+            "a": 0
+          }
+        ]
+      },
+      {
+        "module": 2,
+        "title": "Numbers",
+        "topic": "Counting",
+        "vocab": [
+          {
+            "w": "one",
+            "e": "1\ufe0f\u20e3",
+            "t": "\u043e\u0434\u0438\u043d"
+          },
+          {
+            "w": "two",
+            "e": "2\ufe0f\u20e3",
+            "t": "\u0434\u0432\u0430"
+          },
+          {
+            "w": "three",
+            "e": "3\ufe0f\u20e3",
+            "t": "\u0442\u0440\u0438"
+          },
+          {
+            "w": "four",
+            "e": "4\ufe0f\u20e3",
+            "t": "\u0447\u0435\u0442\u044b\u0440\u0435"
+          },
+          {
+            "w": "five",
+            "e": "5\ufe0f\u20e3",
+            "t": "\u043f\u044f\u0442\u044c"
+          },
+          {
+            "w": "six",
+            "e": "6\ufe0f\u20e3",
+            "t": "\u0448\u0435\u0441\u0442\u044c"
+          },
+          {
+            "w": "seven",
+            "e": "7\ufe0f\u20e3",
+            "t": "\u0441\u0435\u043c\u044c"
+          },
+          {
+            "w": "eight",
+            "e": "8\ufe0f\u20e3",
+            "t": "\u0432\u043e\u0441\u0435\u043c\u044c"
+          },
+          {
+            "w": "nine",
+            "e": "9\ufe0f\u20e3",
+            "t": "\u0434\u0435\u0432\u044f\u0442\u044c"
+          },
+          {
+            "w": "ten",
+            "e": "\ud83d\udd1f",
+            "t": "\u0434\u0435\u0441\u044f\u0442\u044c"
+          },
+          {
+            "w": "eleven",
+            "e": "1\ufe0f\u20e31\ufe0f\u20e3",
+            "t": "\u043e\u0434\u0438\u043d\u043d\u0430\u0434\u0446\u0430\u0442\u044c"
+          },
+          {
+            "w": "twelve",
+            "e": "1\ufe0f\u20e32\ufe0f\u20e3",
+            "t": "\u0434\u0432\u0435\u043d\u0430\u0434\u0446\u0430\u0442\u044c"
+          }
+        ],
+        "grammar": {
+          "p": "How many?",
+          "e": [
+            "One, two, three!",
+            "Count with me!"
+          ]
+        },
+        "listening": "One, two, three, four, five! Six, seven, eight!",
+        "speaking": {
+          "t": "Count to 10",
+          "p": [
+            "One, two, three...",
+            "How many?",
+            "That's right!"
+          ]
+        },
+        "reading": "Numbers: 1 one, 2 two, 3 three. Can you count?",
+        "writing": "Write numbers 1-20 in words.",
+        "exercises": [
+          {
+            "q": "Number 5 is...",
+            "o": [
+              "five",
+              "four",
+              "six",
+              "three"
+            ],
+            "a": 0
+          },
+          {
+            "q": "'\u0442\u0440\u0438' in English",
+            "o": [
+              "three",
+              "two",
+              "four",
+              "five"
+            ],
+            "a": 0
+          },
+          {
+            "q": "After 9 comes...",
+            "o": [
+              "ten",
+              "eleven",
+              "eight",
+              "seven"
+            ],
+            "a": 0
+          },
+          {
+            "q": "Spell 7:",
+            "o": [
+              "seven",
+              "sevan",
+              "sevin",
+              "seaven"
+            ],
+            "a": 0
+          },
+          {
+            "q": "Number 12 is...",
+            "o": [
+              "twelve",
+              "twenty",
+              "ten",
+              "eleven"
+            ],
+            "a": 0
+          },
+          {
+            "q": "Fingers on one hand?",
+            "o": [
+              "five",
+              "ten",
+              "twenty",
+              "eight"
+            ],
+            "a": 0
+          },
+          {
+            "q": "4 + 3 = ?",
+            "o": [
+              "seven",
+              "six",
+              "eight",
+              "five"
+            ],
+            "a": 0
+          },
+          {
+            "q": "Number 11 is...",
+            "o": [
+              "eleven",
+              "seven",
+              "nine",
+              "six"
+            ],
+            "a": 0
+          },
+          {
+            "q": "3 + 7 = ?",
+            "o": [
+              "ten",
+              "nine",
+              "eleven",
+              "eight"
+            ],
+            "a": 0
+          },
+          {
+            "q": "'\u0432\u043e\u0441\u0435\u043c\u044c' is...",
+            "o": [
+              "eight",
+              "seven",
+              "nine",
+              "six"
+            ],
+            "a": 0
+          }
+        ]
+      },
+      {
+        "module": 3,
+        "title": "Family",
+        "topic": "Family Members",
+        "vocab": [
+          {
+            "w": "mother",
+            "e": "\ud83d\udc69",
+            "t": "\u043c\u0430\u043c\u0430"
+          },
+          {
+            "w": "father",
+            "e": "\ud83d\udc68",
+            "t": "\u043f\u0430\u043f\u0430"
+          },
+          {
+            "w": "sister",
+            "e": "\ud83d\udc69",
+            "t": "\u0441\u0435\u0441\u0442\u0440\u0430"
+          },
+          {
+            "w": "brother",
+            "e": "\ud83d\udc68",
+            "t": "\u0431\u0440\u0430\u0442"
+          },
+          {
+            "w": "baby",
+            "e": "\ud83d\udc76",
+            "t": "\u0440\u0435\u0431\u0451\u043d\u043e\u043a"
+          },
+          {
+            "w": "wife",
+            "e": "\ud83d\udc8d",
+            "t": "\u0436\u0435\u043d\u0430"
+          },
+          {
+            "w": "husband",
+            "e": "\ud83d\udc8d",
+            "t": "\u043c\u0443\u0436"
+          },
+          {
+            "w": "daughter",
+            "e": "\ud83d\udc67",
+            "t": "\u0434\u043e\u0447\u044c"
+          },
+          {
+            "w": "son",
+            "e": "\ud83d\udc66",
+            "t": "\u0441\u044b\u043d"
+          },
+          {
+            "w": "grandmother",
+            "e": "\ud83d\udc75",
+            "t": "\u0431\u0430\u0431\u0443\u0448\u043a\u0430"
+          },
+          {
+            "w": "grandfather",
+            "e": "\ud83d\udc74",
+            "t": "\u0434\u0435\u0434\u0443\u0448\u043a\u0430"
+          },
+          {
+            "w": "uncle",
+            "e": "\ud83d\udc68",
+            "t": "\u0434\u044f\u0434\u044f"
+          }
+        ],
+        "grammar": {
+          "p": "This is my [family].",
+          "e": [
+            "This is my mother.",
+            "This is my brother."
+          ]
+        },
+        "listening": "This is my family. This is my mother. This is my father.",
+        "speaking": {
+          "t": "Present family",
+          "p": [
+            "This is my...",
+            "I have a...",
+            "Her/His name is..."
+          ]
+        },
+        "reading": "My family: mother, father, sister, brother. We are four.",
+        "writing": "Describe your family. How many people?",
+        "exercises": [
+          {
+            "q": "Mother is...",
+            "o": [
+              "female",
+              "male",
+              "neutral"
+            ],
+            "a": 0
+          },
+          {
+            "q": "'\u0441\u0435\u0441\u0442\u0440\u0430' is...",
+            "o": [
+              "sister",
+              "brother",
+              "mother",
+              "daughter"
+            ],
+            "a": 0
+          },
+          {
+            "q": "Father's wife is...",
+            "o": [
+              "mother",
+              "sister",
+              "daughter",
+              "wife"
+            ],
+            "a": 0
+          },
+          {
+            "q": "Baby's mother is...",
+            "o": [
+              "mother",
+              "sister",
+              "daughter",
+              "aunt"
+            ],
+            "a": 0
+          },
+          {
+            "q": "Complete: This is my ___.",
+            "o": [
+              "father",
+              "brother",
+              "family",
+              "name"
+            ],
+            "a": 0
+          },
+          {
+            "q": "Daughter's brother is...",
+            "o": [
+              "brother",
+              "son",
+              "father",
+              "uncle"
+            ],
+            "a": 0
+          },
+          {
+            "q": "Grandmother's daughter is...",
+            "o": [
+              "mother",
+              "sister",
+              "aunt",
+              "both possible"
+            ],
+            "a": 0
+          },
+          {
+            "q": "'\u043c\u0443\u0436' is...",
+            "o": [
+              "husband",
+              "father",
+              "brother",
+              "son"
+            ],
+            "a": 0
+          },
+          {
+            "q": "Aunt's child is...",
+            "o": [
+              "cousin",
+              "nephew",
+              "both possible",
+              "uncle"
+            ],
+            "a": 2
+          },
+          {
+            "q": "Your father's father is...",
+            "o": [
+              "grandfather",
+              "uncle",
+              "brother",
+              "son"
+            ],
+            "a": 0
+          }
+        ]
+      },
+      {
+        "module": 4,
+        "title": "Jobs",
+        "topic": "Work",
+        "vocab": [
+          {
+            "w": "doctor",
+            "e": "\ud83d\udc68",
+            "t": "\u0432\u0440\u0430\u0447"
+          },
+          {
+            "w": "teacher",
+            "e": "\ud83d\udc69",
+            "t": "\u0443\u0447\u0438\u0442\u0435\u043b\u044c"
+          },
+          {
+            "w": "driver",
+            "e": "\ud83d\ude97",
+            "t": "\u0432\u043e\u0434\u0438\u0442\u0435\u043b\u044c"
+          },
+          {
+            "w": "chef",
+            "e": "\ud83d\udc68",
+            "t": "\u043f\u043e\u0432\u0430\u0440"
+          },
+          {
+            "w": "nurse",
+            "e": "\ud83d\udc69",
+            "t": "\u043c\u0435\u0434\u0441\u0435\u0441\u0442\u0440\u0430"
+          },
+          {
+            "w": "builder",
+            "e": "\ud83c\udfd7\ufe0f",
+            "t": "\u0441\u0442\u0440\u043e\u0438\u0442\u0435\u043b\u044c"
+          },
+          {
+            "w": "shop assistant",
+            "e": "\ud83d\uded2",
+            "t": "\u043f\u0440\u043e\u0434\u0430\u0432\u0435\u0446"
+          },
+          {
+            "w": "manager",
+            "e": "\ud83d\udcbc",
+            "t": "\u043c\u0435\u043d\u0435\u0434\u0436\u0435\u0440"
+          },
+          {
+            "w": "police officer",
+            "e": "\ud83d\udc6e",
+            "t": "\u043f\u043e\u043b\u0438\u0446\u0435\u0439\u0441\u043a\u0438\u0439"
+          },
+          {
+            "w": "firefighter",
+            "e": "\ud83e\uddd1",
+            "t": "\u043f\u043e\u0436\u0430\u0440\u043d\u044b\u0439"
+          },
+          {
+            "w": "pilot",
+            "e": "\u2708\ufe0f",
+            "t": "\u043b\u0451\u0442\u0447\u0438\u043a"
+          },
+          {
+            "w": "engineer",
+            "e": "\ud83d\udc68",
+            "t": "\u0438\u043d\u0436\u0435\u043d\u0435\u0440"
+          }
+        ],
+        "grammar": {
+          "p": "What do you do? - I'm a [job].",
+          "e": [
+            "I'm a teacher.",
+            "He's a doctor."
+          ]
+        },
+        "listening": "A: What do you do? B: I'm a teacher.",
+        "speaking": {
+          "t": "Say job",
+          "p": [
+            "I work as...",
+            "I'm a...",
+            "I help people."
+          ]
+        },
+        "reading": "Jobs: doctor, teacher, driver, chef. Every job is important!",
+        "writing": "What job do you want? Why?",
+        "exercises": [
+          {
+            "q": "Teacher works in...",
+            "o": [
+              "school",
+              "hospital",
+              "shop",
+              "restaurant"
+            ],
+            "a": 0
+          },
+          {
+            "q": "Doctor helps...",
+            "o": [
+              "people",
+              "cars",
+              "food",
+              "buildings"
+            ],
+            "a": 0
+          },
+          {
+            "q": "Complete: I ___ a teacher.",
+            "o": [
+              "am",
+              "is",
+              "are",
+              "do"
+            ],
+            "a": 0
+          },
+          {
+            "q": "Chef works in...",
+            "o": [
+              "kitchen",
+              "school",
+              "hospital",
+              "office"
+            ],
+            "a": 0
+          },
+          {
+            "q": "'\u043f\u043e\u0432\u0430\u0440' is...",
+            "o": [
+              "chef",
+              "cook",
+              "driver",
+              "teacher"
+            ],
+            "a": 0
+          },
+          {
+            "q": "Nurse works with...",
+            "o": [
+              "doctors",
+              "students",
+              "police",
+              "pilots"
+            ],
+            "a": 0
+          },
+          {
+            "q": "Builder makes...",
+            "o": [
+              "buildings",
+              "food",
+              "cars",
+              "medicine"
+            ],
+            "a": 0
+          },
+          {
+            "q": "Which job helps sick people?",
+            "o": [
+              "doctor",
+              "teacher",
+              "chef",
+              "driver"
+            ],
+            "a": 0
+          },
+          {
+            "q": "Complete: She is a ___.",
+            "o": [
+              "nurse",
+              "he",
+              "they",
+              "we"
+            ],
+            "a": 0
+          },
+          {
+            "q": "Manager works in...",
+            "o": [
+              "office",
+              "hospital",
+              "kitchen",
+              "school"
+            ],
+            "a": 0
+          }
+        ]
+      },
+      {
+        "module": 5,
+        "title": "Places",
+        "topic": "Locations",
+        "vocab": [
+          {
+            "w": "school",
+            "e": "\ud83c\udfeb",
+            "t": "\u0448\u043a\u043e\u043b\u0430"
+          },
+          {
+            "w": "hospital",
+            "e": "\ud83c\udfe5",
+            "t": "\u0431\u043e\u043b\u044c\u043d\u0438\u0446\u0430"
+          },
+          {
+            "w": "hotel",
+            "e": "\ud83c\udfe8",
+            "t": "\u043e\u0442\u0435\u043b\u044c"
+          },
+          {
+            "w": "restaurant",
+            "e": "\ud83c\udf7d\ufe0f",
+            "t": "\u0440\u0435\u0441\u0442\u043e\u0440\u0430\u043d"
+          },
+          {
+            "w": "shop",
+            "e": "\ud83c\udfea",
+            "t": "\u043c\u0430\u0433\u0430\u0437\u0438\u043d"
+          },
+          {
+            "w": "bank",
+            "e": "\ud83c\udfe6",
+            "t": "\u0431\u0430\u043d\u043a"
+          },
+          {
+            "w": "park",
+            "e": "\ud83c\udf33",
+            "t": "\u043f\u0430\u0440\u043a"
+          },
+          {
+            "w": "station",
+            "e": "\ud83d\ude89",
+            "t": "\u0432\u043e\u043a\u0437\u0430\u043b"
+          },
+          {
+            "w": "airport",
+            "e": "\u2708\ufe0f",
+            "t": "\u0430\u044d\u0440\u043e\u043f\u043e\u0440\u0442"
+          },
+          {
+            "w": "cinema",
+            "e": "\ud83c\udfac",
+            "t": "\u043a\u0438\u043d\u043e\u0442\u0435\u0430\u0442\u0440"
+          },
+          {
+            "w": "library",
+            "e": "\ud83d\udcda",
+            "t": "\u0431\u0438\u0431\u043b\u0438\u043e\u0442\u0435\u043a\u0430"
+          },
+          {
+            "w": "museum",
+            "e": "\ud83c\udfdb\ufe0f",
+            "t": "\u043c\u0443\u0437\u0435\u0439"
+          }
+        ],
+        "grammar": {
+          "p": "Where is the [place]?",
+          "e": [
+            "Where is the hotel?",
+            "It's next to the shop."
+          ]
+        },
+        "listening": "Excuse me, where is the hospital?",
+        "speaking": {
+          "t": "Ask directions",
+          "p": [
+            "Where is...?",
+            "How do I get to...?",
+            "Turn left/right."
+          ]
+        },
+        "reading": "Places: school, hospital, hotel, restaurant, shop, bank, park.",
+        "writing": "Describe your city.",
+        "exercises": [
+          {
+            "q": "School is for...",
+            "o": [
+              "learning",
+              "shopping",
+              "eating",
+              "money"
+            ],
+            "a": 0
+          },
+          {
+            "q": "Bank is for...",
+            "o": [
+              "money",
+              "health",
+              "food",
+              "learning"
+            ],
+            "a": 0
+          },
+          {
+            "q": "You eat in a...",
+            "o": [
+              "restaurant",
+              "bank",
+              "school",
+              "park"
+            ],
+            "a": 0
+          },
+          {
+            "q": "Complete: Where is the ___?",
+            "o": [
+              "hotel",
+              "money",
+              "food",
+              "learning"
+            ],
+            "a": 0
+          },
+          {
+            "q": "Airport is for...",
+            "o": [
+              "planes",
+              "trains",
+              "cars",
+              "buses"
+            ],
+            "a": 0
+          },
+          {
+            "q": "You read books in a...",
+            "o": [
+              "library",
+              "bank",
+              "hospital",
+              "gym"
+            ],
+            "a": 0
+          },
+          {
+            "q": "'\u043f\u0430\u0440\u043a' is...",
+            "o": [
+              "park",
+              "garden",
+              "forest",
+              "beach"
+            ],
+            "a": 0
+          },
+          {
+            "q": "Watch films in...",
+            "o": [
+              "cinema",
+              "library",
+              "bank",
+              "school"
+            ],
+            "a": 0
+          },
+          {
+            "q": "Complete: Hotel is ___ to bank.",
+            "o": [
+              "next",
+              "far",
+              "old",
+              "new"
+            ],
+            "a": 0
+          },
+          {
+            "q": "Hospital helps...",
+            "o": [
+              "sick people",
+              "students",
+              "tourists",
+              "shoppers"
+            ],
+            "a": 0
+          }
+        ]
+      }
+    ]
+  }
+}
