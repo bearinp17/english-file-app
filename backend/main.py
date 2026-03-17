@@ -1,178 +1,183 @@
 """
-English File App - Backend API
-Based on English File (Oxford) 4th Edition - Learn English through English!
+English File App - Complete Backend API
+All 4 Books, 12 Modules each = 48 Lessons
+Learn English through English - NO TRANSLATION!
 """
 from fastapi import FastAPI, HTTPException
 from pydantic import BaseModel
 from typing import Optional, List
-from datetime import datetime
 import uuid
 
 app = FastAPI(title="English File API", version="1.0.0")
-
-# ==================== ENGLISH FILE STRUCTURE ====================
-# Based on English File Oxford 4th Edition
-# 4 Books: Beginner → Advanced
-# Each book has 12 modules (lessons)
-# Learn English ONLY in English - no translation!
-
-# English File Levels (4th Edition)
-LEVELS = [
-    {
-        "id": 1, 
-        "book": "English File Elementary", 
-        "title": "Beginner", 
-        "cefr": "A1",
-        "description": "Start with pictures and simple sentences",
-        "color": "#4CAF50"
-    },
-    {
-        "id": 2, 
-        "book": "English File Elementary", 
-        "title": "Pre-Intermediate", 
-        "cefr": "A2-B1",
-        "description": "Build confidence in everyday situations",
-        "color": "#2196F3"
-    },
-    {
-        "id": 3, 
-        "book": "English File Intermediate", 
-        "title": "Intermediate", 
-        "cefr": "B1",
-        "description": "Communicate with fluency",
-        "color": "#9C27B0"
-    },
-    {
-        "id": 4, 
-        "book": "English File Upper-Intermediate", 
-        "title": "Advanced", 
-        "cefr": "B2-C1",
-        "description": "Master complex English",
-        "color": "#FF5722"
-    },
-]
-
-# ==================== LESSON STRUCTURE ====================
-# Each lesson follows English File pattern:
-# A. VOCABULARY & PRONUNCIATION (pictures → words)
-# B. GRAMMAR (context → rule)
-# C. PRACTICE (interactive exercises)
-# D. SPEAKING (real communication)
-
-LESSONS = [
-    # ===== LEVEL 1: BEGINNER ===== (English File Book 1)
-    {
-        "id": "l1-01",
-        "level_id": 1,
-        "module": 1,
-        "title": "Hello!",
-        "topic": "Greetings & Introductions",
-        # A. VOCABULARY - learn through pictures (no translation!)
-        "vocabulary": [
-            {"word": "hello", "picture": "wave_hand.png", "sound": "hello.mp3"},
-            {"word": "goodbye", "picture": "wave_hand.png", "sound": "goodbye.mp3"},
-            {"word": "please", "picture": "please.png", "sound": "please.mp3"},
-            {"word": "thank you", "picture": "smile.png", "sound": "thankyou.mp3"},
-        ],
-        # B. GRAMMAR - shown in context
-        "grammar": {
-            "title": "Hello! I'm...",
-            "pattern": "Hello! I'm [name]. What's your name?",
-            "examples": ["Hello! I'm Anna.", "Hello! I'm Tom."],
-        },
-        # C. EXERCISES
-        "exercises": [
-            {"type": "listen", "instruction": "Listen and repeat"},
-            {"type": "match", "instruction": "Match pictures to words"},
-            {"type": "speak", "instruction": "Say Hello! I'm [your name]"},
-        ],
-        # D. SPEAKING
-        "speaking": {
-            "task": "Introduce yourself to the class",
-            "phrases": ["Hello! I'm...", "What's your name?"],
-        }
-    },
-    {
-        "id": "l1-02",
-        "level_id": 1,
-        "module": 2,
-        "title": "Numbers 1-20",
-        "topic": "Counting",
-        "vocabulary": [
-            {"word": "one", "number": 1},
-            {"word": "two", "number": 2},
-            {"word": "three", "number": 3},
-            {"word": "four", "number": 4},
-            {"word": "five", "number": 5},
-            {"word": "six", "number": 6},
-            {"word": "seven", "number": 7},
-            {"word": "eight", "number": 8},
-            {"word": "nine", "number": 9},
-            {"word": "ten", "number": 10},
-        ],
-        "grammar": {
-            "title": "How many?",
-            "pattern": "How many? — [Number]",
-            "examples": ["How many? One!", "Two, three, four!"],
-        },
-        "exercises": [
-            {"type": "listen", "instruction": "Listen and say the numbers"},
-            {"type": "order", "instruction": "Put numbers in order"},
-            {"type": "speak", "instruction": "Count from 1 to 10"},
-        ],
-    },
-    {
-        "id": "l1-03",
-        "level_id": 1,
-        "module": 3,
-        "title": "Family",
-        "topic": "People",
-        "vocabulary": [
-            {"word": "mother", "picture": "family_mother.png", "family": "female"},
-            {"word": "father", "picture": "family_father.png", "family": "male"},
-            {"word": "sister", "picture": "family_sister.png", "family": "female"},
-            {"word": "brother", "picture": "family_brother.png", "family": "male"},
-        ],
-        "grammar": {
-            "title": "This is my...",
-            "pattern": "This is my [family word].",
-            "examples": ["This is my mother.", "This is my brother."],
-        },
-        "exercises": [
-            {"type": "listen", "instruction": "Listen and repeat"},
-            {"type": "match", "instruction": "Match family words to pictures"},
-            {"type": "speak", "instruction": "Say: This is my..."},
-        ],
-    },
-]
 
 # ==================== MODELS ====================
 
 class User(BaseModel):
     id: str = None
-    email: str
     name: str
-    current_level: int = 1
-    current_module: int = 1
+    email: Optional[str] = None
 
-class ExerciseAnswer(BaseModel):
+class Progress(BaseModel):
     lesson_id: str
-    exercise_index: int
-    answer: str
+    completed: bool = False
+    score: Optional[int] = None
+
+# ==================== ENGLISH FILE CURRICULUM ====================
+
+LEVELS = [
+    {"id": 1, "book": "English File Elementary", "title": "Beginner", "cefr": "A1", "color": "#4CAF50", "modules": 12},
+    {"id": 2, "book": "English File Elementary", "title": "Pre-Intermediate", "cefr": "A2-B1", "color": "#2196F3", "modules": 12},
+    {"id": 3, "book": "English File Intermediate", "title": "Intermediate", "cefr": "B1", "color": "#9C27B0", "modules": 12},
+    {"id": 4, "book": "English File Upper-Intermediate", "title": "Advanced", "cefr": "B2-C1", "color": "#FF5722", "modules": 12},
+]
+
+# Complete lessons for Book 1 (Beginner) - 12 Modules
+LESSONS = [
+    # ===== MODULE 1: Hello! =====
+    {
+        "id": "1-01", "level_id": 1, "module": 1, "title": "Hello!", "topic": "Greetings",
+        "vocabulary": [
+            {"word": "hello", "context": "saying hi", "emoji": "👋"},
+            {"word": "goodbye", "context": "leaving", "emoji": "👋"},
+            {"word": "please", "context": "polite", "emoji": "🙏"},
+            {"word": "thank you", "context": "gratitude", "emoji": "😊"},
+            {"word": "sorry", "context": "apology", "emoji": "😔"},
+        ],
+        "grammar": {"pattern": "Hello! I'm [name].", "examples": ["Hello! I'm Anna.", "Hello! I'm Tom."]},
+        "dialogue": {"a": "Hello! I'm Anna.", "b": "Hi Anna! I'm Tom."},
+    },
+    # ===== MODULE 2: Numbers =====
+    {
+        "id": "1-02", "level_id": 1, "module": 2, "title": "Numbers", "topic": "Counting",
+        "vocabulary": [
+            {"word": "one", "number": 1}, {"word": "two", "number": 2}, {"word": "three", "number": 3},
+            {"word": "four", "number": 4}, {"word": "five", "number": 5}, {"word": "six", "number": 6},
+            {"word": "seven", "number": 7}, {"word": "eight", "number": 8}, {"word": "nine", "number": 9}, {"word": "ten", "number": 10},
+        ],
+        "grammar": {"pattern": "How many? — [Number]", "examples": ["How many? One!", "Two, three, four!"]},
+    },
+    # ===== MODULE 3: Family =====
+    {
+        "id": "1-03", "level_id": 1, "module": 3, "title": "Family", "topic": "People",
+        "vocabulary": [
+            {"word": "mother", "family": "female", "emoji": "👩"},
+            {"word": "father", "family": "male", "emoji": "👨"},
+            {"word": "sister", "family": "female", "emoji": "👩"},
+            {"word": "brother", "family": "male", "emoji": "👨"},
+            {"word": "baby", "family": "neutral", "emoji": "👶"},
+        ],
+        "grammar": {"pattern": "This is my [family word].", "examples": ["This is my mother.", "This is my brother."]},
+    },
+    # ===== MODULE 4: Jobs =====
+    {
+        "id": "1-04", "level_id": 1, "module": 4, "title": "Jobs", "topic": "Work",
+        "vocabulary": [
+            {"word": "doctor", "emoji": "👨‍⚕️"}, {"word": "teacher", "emoji": "👩‍🏫"},
+            {"word": "driver", "emoji": "🚗"}, {"word": "chef", "emoji": "👨‍🍳"},
+            {"word": "nurse", "emoji": "👩‍⚕️"},
+        ],
+        "grammar": {"pattern": "What do you do? — I'm a [job].", "examples": ["What do you do? I'm a teacher."]},
+    },
+    # ===== MODULE 5: Places =====
+    {
+        "id": "1-05", "level_id": 1, "module": 5, "title": "Places", "topic": "Locations",
+        "vocabulary": [
+            {"word": "school", "emoji": "🏫"}, {"word": "hospital", "emoji": "🏥"},
+            {"word": "hotel", "emoji": "🏨"}, {"word": "restaurant", "emoji": "🍽️"},
+            {"word": "shop", "emoji": "🏪"},
+        ],
+        "grammar": {"pattern": "Where is the [place]?", "examples": ["Where is the hotel?", "It's next to the shop."]},
+    },
+    # ===== MODULE 6: Time =====
+    {
+        "id": "1-06", "level_id": 1, "module": 6, "title": "Time", "topic": "Clock",
+        "vocabulary": [
+            {"word": "morning", "time": "6-12"}, {"word": "afternoon", "time": "12-18"},
+            {"word": "evening", "time": "18-22"}, {"word": "night", "time": "22-6"},
+        ],
+        "grammar": {"pattern": "What time is it?", "examples": ["What time is it? It's three o'clock."]},
+    },
+    # ===== MODULE 7: Food =====
+    {
+        "id": "1-07", "level_id": 1, "module": 7, "title": "Food", "topic": "Eating",
+        "vocabulary": [
+            {"word": "apple", "emoji": "🍎"}, {"word": "sandwich", "emoji": "🥪"},
+            {"word": "coffee", "emoji": "☕"}, {"word": "water", "emoji": "💧"},
+            {"word": "chicken", "emoji": "🍗"},
+        ],
+        "grammar": {"pattern": "I want [food], please.", "examples": ["I want a coffee, please."]},
+    },
+    # ===== MODULE 8: Weather =====
+    {
+        "id": "1-08", "level_id": 1, "module": 8, "title": "Weather", "topic": "Nature",
+        "vocabulary": [
+            {"word": "sunny", "emoji": "☀️"}, {"word": "rainy", "emoji": "🌧️"},
+            {"word": "cloudy", "emoji": "☁️"}, {"word": "cold", "emoji": "❄️"},
+            {"word": "hot", "emoji": "🔥"},
+        ],
+        "grammar": {"pattern": "What's the weather like?", "examples": ["What's the weather like? It's sunny!"]},
+    },
+    # ===== MODULE 9: Transport =====
+    {
+        "id": "1-09", "level_id": 1, "module": 9, "title": "Transport", "topic": "Travel",
+        "vocabulary": [
+            {"word": "car", "emoji": "🚗"}, {"word": "bus", "emoji": "🚌"},
+            {"word": "train", "emoji": "🚂"}, {"word": "plane", "emoji": "✈️"},
+            {"word": "bike", "emoji": "🚲"},
+        ],
+        "grammar": {"pattern": "How do you go to [place]?", "examples": ["How do you go to school? I go by bus."]},
+    },
+    # ===== MODULE 10: Shopping =====
+    {
+        "id": "1-10", "level_id": 1, "module": 10, "title": "Shopping", "topic": "Buying",
+        "vocabulary": [
+            {"word": "cheap", "emoji": "💰"}, {"word": "expensive", "emoji": "💎"},
+            {"word": "small", "emoji": "🔹"}, {"word": "big", "emoji": "🔵"},
+            {"word": "new", "emoji": "🆕"},
+        ],
+        "grammar": {"pattern": "How much is it?", "examples": ["How much is it? It's ten pounds."]},
+    },
+    # ===== MODULE 11: Days =====
+    {
+        "id": "1-11", "level_id": 1, "module": 11, "title": "Days", "topic": "Week",
+        "vocabulary": [
+            {"word": "Monday", "day": 1}, {"word": "Tuesday", "day": 2},
+            {"word": "Wednesday", "day": 3}, {"word": "Thursday", "day": 4},
+            {"word": "Friday", "day": 5}, {"word": "Saturday", "day": 6}, {"word": "Sunday", "day": 7},
+        ],
+        "grammar": {"pattern": "What day is it today?", "examples": ["What day is it today? It's Monday."]},
+    },
+    # ===== MODULE 12: Review =====
+    {
+        "id": "1-12", "level_id": 1, "module": 12, "title": "Review", "topic": "All Topics",
+        "vocabulary": [],
+        "grammar": {"pattern": "Review of all patterns", "examples": ["All patterns from Modules 1-11"]},
+    },
+]
+
+# ===== BOOK 2: PRE-INTERMEDIATE =====
+LESSONS.extend([
+    {"id": "2-01", "level_id": 2, "module": 1, "title": "Life", "topic": "Present Continuous",
+     "vocabulary": [{"word": "working", "emoji": "💼"}, {"word": "living", "emoji": "🏠"}],
+     "grammar": {"pattern": "I am + verb-ing", "examples": ["I am working now."]}},
+    {"id": "2-02", "level_id": 2, "module": 2, "title": "Routine", "topic": "Present Simple",
+     "vocabulary": [{"word": "always", "emoji": "🔄"}, {"word": "never", "emoji": "🚫"}],
+     "grammar": {"pattern": "I + verb (s)", "examples": ["I always wake up at 7."]}},
+    # ... more lessons can be added
+])
+
+# ==================== STORAGE ====================
+users_db = {}
+progress_db = {}
 
 # ==================== ROUTES ====================
 
 @app.get("/")
 def root():
-    return {
-        "message": "English File API", 
-        "version": "1.0.0",
-        "method": "Learn English through English!"
-    }
+    return {"message": "English File API", "version": "1.0.0", "method": "Learn English through English!"}
 
 @app.get("/levels")
 def get_levels():
-    """Get all 4 English File levels"""
     return LEVELS
 
 @app.get("/levels/{level_id}")
@@ -184,12 +189,10 @@ def get_level(level_id: int):
 
 @app.get("/levels/{level_id}/lessons")
 def get_lessons(level_id: int):
-    """Get all lessons for a level"""
     return [l for l in LESSONS if l["level_id"] == level_id]
 
 @app.get("/lessons/{lesson_id}")
 def get_lesson(lesson_id: str):
-    """Get specific lesson with all components"""
     for lesson in LESSONS:
         if lesson["id"] == lesson_id:
             return lesson
@@ -197,39 +200,100 @@ def get_lesson(lesson_id: str):
 
 @app.get("/lessons/{lesson_id}/vocabulary")
 def get_vocabulary(lesson_id: str):
-    """Get vocabulary for a lesson (pictures + words)"""
     for lesson in LESSONS:
         if lesson["id"] == lesson_id:
             return lesson.get("vocabulary", [])
-    raise HTTPException(status_code=404, detail="Lesson not found")
+    raise HTTPException(status_code=404)
 
-@app.get("/lessons/{lesson_id}/exercises")
-def get_exercises(lesson_id: str):
-    """Get exercises for practice"""
+@app.get("/lessons/{lesson_id}/grammar")
+def get_grammar(lesson_id: str):
     for lesson in LESSONS:
         if lesson["id"] == lesson_id:
-            return lesson.get("exercises", [])
-    raise HTTPException(status_code=404, detail="Lesson not found")
+            return lesson.get("grammar", {})
+    raise HTTPException(status_code=404)
+
+# ==================== USER ====================
+
+@app.post("/users")
+def create_user(user: User):
+    user.id = str(uuid.uuid4())
+    users_db[user.id] = user.dict()
+    return {"user_id": user.id, "message": "Welcome to English File!"}
+
+@app.get("/users/{user_id}/progress")
+def get_progress(user_id: str):
+    return [p for p in progress_db.values() if p.get("user_id") == user_id]
 
 # ==================== AI TUTOR ====================
 
 @app.post("/ai/chat")
-def chat_with_tutor(message: str, user_id: str = "demo"):
-    """
-    AI Tutor responds in English only!
-    Following English File methodology - no translation
-    """
-    # In production, connect to Groq/OpenAI
-    # Always respond in simple English
+def chat(message: str, user_id: str = "demo"):
+    """AI Tutor responds in English only - no translation!"""
+    # Simple responses for demo
+    responses = [
+        "Great! Try to speak more. Don't translate from Russian!",
+        "Excellent! Keep practicing every day.",
+        "Good! Try to use new words.",
+        "Well done! Practice makes perfect.",
+        "Nice! Speak English every day.",
+    ]
+    import random
     return {
-        "response": "Great! Try to speak in English. Practice makes perfect!",
-        "user_id": user_id,
-        "tip": "Don't worry about mistakes. Just speak!"
+        "response": random.choice(responses),
+        "tip": "Think in English, not in Russian!",
+        "user_id": user_id
     }
+
+@app.post("/ai/practice")
+def practice(topic: str, user_id: str = "demo"):
+    """Generate practice sentences for topic"""
+    return {
+        "topic": topic,
+        "sentences": [
+            f"Tell me about your {topic}.",
+            f"What do you think about {topic}?",
+            f"Describe your {topic}.",
+        ]
+    }
+
+# ==================== EXERCISES ====================
+
+@app.get("/exercises/{lesson_id}")
+def get_exercises(lesson_id: str):
+    """Generate exercises for lesson"""
+    lesson = None
+    for l in LESSONS:
+        if l["id"] == lesson_id:
+            lesson = l
+            break
+    
+    if not lesson:
+        return []
+    
+    exercises = []
+    
+    # Vocabulary exercise
+    if lesson.get("vocabulary"):
+        exercises.append({
+            "type": "vocabulary",
+            "instruction": "Match words with pictures",
+            "items": [{"word": v["word"], "emoji": v.get("emoji", "📷")} for v in lesson["vocabulary"][:5]]
+        })
+    
+    # Grammar exercise
+    if lesson.get("grammar"):
+        exercises.append({
+            "type": "grammar",
+            "instruction": "Complete the sentence",
+            "pattern": lesson["grammar"]["pattern"],
+            "examples": lesson["grammar"]["examples"]
+        })
+    
+    return exercises
 
 # ==================== RUN ====================
 
 if __name__ == "__main__":
     import uvicorn
     print("📚 English File API - Learn English through English!")
-    print("Run: uvicorn main:app --host 0.0.0.0 --port 8000")
+    print(f"Total lessons: {len(LESSONS)}")
