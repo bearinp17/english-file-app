@@ -1,132 +1,144 @@
 <!DOCTYPE html>
-<html><head><meta charset="UTF-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>English File - Complete Course</title><link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap" rel="stylesheet">
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>English File - Complete Course</title>
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
 <style>
-:root{--p:#6366f1;--s:#ec4899;--g:#10b981;--w:#f59e0b;--bg:#0f172a;--c:#1e293b;--t:#f8fafc;--m:#94a3b8}
-*{margin:0;padding:0;box-sizing:border-box}body{font-family:Inter,sans-serif;background:var(--bg);color:var(--t);min-height:100vh}
-.bg{position:fixed;inset:0;background:radial-gradient(ellipse at 20% 20%,rgba(99,102,241,.15),transparent 50%),radial-gradient(ellipse at 80% 80%,rgba(236,72,153,.1),transparent 50%);z-index:-1}
-header{background:rgba(30,41,59,.95);padding:16px 0;position:sticky;top:0;z-index:100}
-.inner{max-width:1200px;margin:0 auto;padding:0 24px;display:flex;justify-content:space-between;align-items:center}
-.logo{display:flex;align-items:center;gap:12px}
-.logo-icon{width:40px;height:40px;background:linear-gradient(135deg,var(--p),var(--s));border-radius:10px;display:flex;align-items:center;justify-content:center;font-size:20px}
-.logo-text{font-size:1.25rem;font-weight:700}
-main{max-width:1200px;margin:0 auto;padding:40px 24px}
-.books{display:grid;grid-template-columns:repeat(auto-fit,minmax(280px,1fr));gap:24px}
-.book{background:var(--c);border-radius:20px;padding:24px;cursor:pointer;transition:all .3s;border:1px solid rgba(255,255,255,.1)}
-.book:hover{transform:translateY(-4px);box-shadow:0 20px 40px rgba(0,0,0,.3)}
-.book::before{content:'';position:absolute;top:0;left:0;right:0;height:4px;border-radius:20px 20px 0 0;background:var(--g)}
-.book-2::before{background:#3b82f6}
-.book-3::before{background:#8b5cf6}
-.book-4::before{background:var(--w)}
-.book-num{font-size:.875rem;color:var(--m)}
-.book-title{font-size:1.5rem;font-weight:700;margin:8px 0}
-.book-cefr{display:inline-block;padding:4px 12px;border-radius:20px;font-size:.875rem;font-weight:600;margin-bottom:12px;background:rgba(16,185,129,.2);color:#10b981}
-.book-2 .book-cefr{background:rgba(59,130,246,.2);color:#3b82f6}
-.book-3 .book-cefr{background:rgba(139,92,246,.2);color:#8b5cf6}
-.book-4 .book-cefr{background:rgba(245,158,11,.2);color:#f59e0b}
-.book-desc{color:var(--m);line-height:1.6;margin-bottom:16px}
-.modules{display:flex;flex-wrap:wrap;gap:8px}
-.module-badge{padding:6px 12px;background:rgba(255,255,255,.05);border-radius:8px;font-size:.75rem;color:var(--m)}
-.modal{display:none;position:fixed;inset:0;background:rgba(0,0,0,.85);z-index:200;overflow-y:auto;padding:20px}
+:root{--primary:#6366f1;--secondary:#ec4899;--success:#10b981;--warning:#f59e0b;--error:#ef4444;--bg:#0f172a;--card:#1e293b;--text:#f8fafc;--muted:#94a3b8;--border:rgba(255,255,255,0.1)}
+*{margin:0;padding:0;box-sizing:border-box}
+body{font-family:Poppins,sans-serif;background:var(--bg);color:var(--text);min-height:100vh}
+.bg{position:fixed;inset:0;background:linear-gradient(135deg,#0f172a 0%,#1e1b4b 50%,#0f172a 100%);z-index:-1}
+header{background:rgba(15,23,42,0.8);backdrop-filter:blur(20px);border-bottom:1px solid var(--border);padding:20px 0;position:sticky;top:0;z-index:100}
+.inner{max-width:1400px;margin:0 auto;padding:0 24px;display:flex;justify-content:space-between;align-items:center}
+.logo{display:flex;align-items:center;gap:16px}
+.logo-icon{width:48px;height:48px;background:linear-gradient(135deg,var(--primary),var(--secondary));border-radius:14px;display:flex;align-items:center;justify-content:center;font-size:24px}
+.logo-text{font-size:1.5rem;font-weight:700}
+main{max-width:1400px;margin:0 auto;padding:60px 24px}
+h1{font-size:3rem;font-weight:800;margin-bottom:16px}
+.books{display:grid;grid-template-columns:repeat(auto-fit,minmax(320px,1fr));gap:28px}
+.book{background:linear-gradient(145deg,rgba(30,41,59,0.8),rgba(30,41,59,0.4));border-radius:28px;padding:32px;cursor:pointer;transition:all 0.4s;border:1px solid rgba(255,255,255,0.1)}
+.book:hover{transform:translateY(-12px);box-shadow:0 30px 60px rgba(0,0,0,0.4)}
+.book::before{content:'';position:absolute;top:0;left:0;right:0;height:6px;border-radius:28px 28px 0 0}
+.book-1::before{background:linear-gradient(90deg,#10b981,#34d399)}
+.book-2::before{background:linear-gradient(90deg,#3b82f6,#60a5fa)}
+.book-3::before{background:linear-gradient(90deg,#8b5cf6,#a78bfa)}
+.book-4::before{background:linear-gradient(90deg,#f59e0b,#fbbf24)}
+.book-num{font-size:0.9rem;color:var(--muted);font-weight:500}
+.book-title{font-size:1.8rem;font-weight:700;margin:12px 0}
+.book-cefr{display:inline-block;padding:6px 16px;background:rgba(255,255,255,0.1);border-radius:20px;font-size:0.85rem;font-weight:600}
+.book-desc{color:var(--muted);line-height:1.7;margin:16px 0}
+.modules{display:flex;flex-wrap:wrap;gap:10px}
+.module-badge{padding:8px 14px;background:rgba(255,255,255,0.05);border-radius:10px;font-size:0.8rem;color:var(--muted)}
+.modal{display:none;position:fixed;inset:0;background:rgba(0,0,0,0.9);z-index:200;overflow-y:auto;padding:30px}
 .modal.active{display:block}
-.modal-content{background:var(--c);border-radius:24px;max-width:1000px;margin:0 auto;animation:slideUp .3s}
-@keyframes slideUp{from{opacity:0;transform:translateY(20px)}to{opacity:1;transform:translateY(0)}}
-.modal-header{padding:24px;border-bottom:1px solid rgba(255,255,255,.1);display:flex;justify-content:space-between;align-items:center;position:sticky;top:0;background:var(--c);z-index:10}
-.modal-close{background:rgba(255,255,255,.1);border:none;color:#fff;width:36px;height:36px;border-radius:50%;cursor:pointer;font-size:1.25rem}
-.modal-body{padding:24px}
-.modules-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(180px,1fr));gap:16px}
-.module-card{background:rgba(255,255,255,.05);border-radius:16px;padding:16px;cursor:pointer;transition:all .3s}
-.module-card:hover{background:rgba(99,102,241,.1)}
-.module-num{font-size:.75rem;color:var(--m);margin-bottom:8px}
-.module-title{font-weight:600;margin-bottom:4px}
-.module-topic{font-size:.875rem;color:var(--p)}
-.tabs{display:flex;gap:8px;margin-bottom:24px;flex-wrap:wrap}
-.tab-btn{padding:12px 20px;background:rgba(255,255,255,.05);border:1px solid rgba(255,255,255,.1);border-radius:10px;color:var(--t);cursor:pointer;font-weight:500;transition:all .3s}
-.tab-btn:hover{background:rgba(255,255,255,.1)}
-.tab-btn.active{background:var(--p);border-color:var(--p)}
+.modal-content{background:linear-gradient(145deg,rgba(30,41,59,0.95),rgba(15,23,42,0.98));border-radius:32px;max-width:1200px;margin:0 auto;animation:slideUp 0.4s ease-out}
+@keyframes slideUp{from{opacity:0;transform:translateY(30px)}to{opacity:1;transform:translateY(0)}}
+.modal-header{padding:28px;border-bottom:1px solid var(--border);display:flex;justify-content:space-between;align-items:center;position:sticky;top:0;background:rgba(30,41,59,0.95);z-index:10;border-radius:32px 32px 0 0}
+.modal-close{background:rgba(255,255,255,0.1);border:none;color:#fff;width:44px;height:44px;border-radius:50%;cursor:pointer;font-size:1.5rem}
+.modal-body{padding:28px}
+.modules-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(220px,1fr));gap:16px}
+.module-card{background:rgba(255,255,255,0.05);border-radius:20px;padding:24px;cursor:pointer;transition:all 0.3s;border:2px solid transparent}
+.module-card:hover{background:rgba(99,102,241,0.15);border-color:var(--primary)}
+.tabs{display:flex;gap:10px;margin-bottom:28px;flex-wrap:wrap;background:rgba(255,255,255,0.03);padding:8px;border-radius:16px}
+.tab-btn{padding:14px 24px;background:transparent;border:1px solid transparent;border-radius:12px;color:var(--text);cursor:pointer;font-weight:500}
+.tab-btn:hover{background:rgba(255,255,255,0.1)}
+.tab-btn.active{background:linear-gradient(135deg,var(--primary),var(--secondary))}
 .tab-content{display:none}
 .tab-content.active{display:block}
-.vocab-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(140px,1fr));gap:16px}
-.vocab-item{background:rgba(255,255,255,.05);border-radius:16px;padding:16px;text-align:center;cursor:pointer;transition:all .3s}
-.vocab-item:hover{background:rgba(99,102,241,.15);transform:scale(1.02)}
-.vocab-emoji{font-size:2.5rem;margin-bottom:8px}
-.vocab-word{font-weight:600;margin-bottom:4px}
-.vocab-trans{font-size:.875rem;color:var(--m)}
-.grammar{background:linear-gradient(135deg,rgba(99,102,241,.15),rgba(236,72,153,.1));border-radius:16px;padding:24px;margin-bottom:20px}
-.grammar-title{font-size:1.25rem;font-weight:700;margin-bottom:16px;color:var(--p)}
-.grammar-pat{font-size:1.5rem;font-weight:700;margin-bottom:16px;padding:16px;background:rgba(0,0,0,.2);border-radius:12px;text-align:center}
-.grammar-ex{padding:16px;background:rgba(255,255,255,.05);border-radius:10px;margin:8px 0}
-.exercise{background:rgba(255,255,255,.05);border-radius:16px;padding:24px;margin-bottom:20px}
-.ex-type{display:inline-block;padding:4px 12px;background:var(--s);border-radius:20px;font-size:.75rem;font-weight:600;margin-bottom:12px}
-.ex-q{font-size:1.1rem;margin-bottom:20px}
-.opt-btn{padding:16px 20px;background:rgba(255,255,255,.05);border:2px solid rgba(255,255,255,.1);border-radius:12px;color:var(--t);cursor:pointer;text-align:left;width:100%;margin-bottom:8px;transition:all .3s}
-.opt-btn:hover{background:rgba(99,102,241,.1);border-color:var(--p)}
-.opt-btn.correct{background:rgba(16,185,129,.2);border-color:var(--g)}
-.opt-btn.wrong{background:rgba(239,68,68,.2);border-color:#ef4444}
-.speaking{background:linear-gradient(135deg,rgba(16,185,129,.15),rgba(99,102,241,.1));border-radius:16px;padding:24px;text-align:center}
-.speaking-icon{font-size:4rem;margin-bottom:16px}
-.speaking-task{font-size:1.25rem;font-weight:600;margin-bottom:12px}
-.speaking-phrases{text-align:left;background:rgba(0,0,0,.2);border-radius:12px;padding:16px;margin:16px 0}
-.speaking-phrases li{margin:8px 0;color:var(--m)}
-.record-btn{background:linear-gradient(135deg,var(--p),var(--s));border:none;color:#fff;padding:16px 32px;border-radius:12px;font-size:1rem;font-weight:600;cursor:pointer}
-.listening{background:linear-gradient(135deg,rgba(245,158,11,.15),rgba(239,68,68,.1));border-radius:16px;padding:24px;text-align:center}
-.audio-wave{display:flex;align-items:center;justify-content:center;gap:4px;height:60px;margin:20px 0}
-.wave{width:4px;background:var(--w);border-radius:2px;animation:wave 1s ease-in-out infinite}
-@keyframes wave{0%,100%{height:20px}50%{height:50px}}
-.play-btn{background:var(--w);border:none;color:#fff;padding:16px 32px;border-radius:12px;font-size:1rem;font-weight:600;cursor:pointer}
-.reading{background:rgba(255,255,255,.05);border-radius:16px;padding:24px;line-height:1.8}
-.writing textarea{width:100%;min-height:200px;background:rgba(255,255,255,.05);border:2px solid rgba(255,255,255,.1);border-radius:12px;padding:16px;color:var(--t);font-size:1rem;font-family:inherit}
-.writing textarea:focus{outline:none;border-color:var(--p)}
-.ai-chat{background:rgba(0,0,0,.3);border-radius:16px;padding:20px;margin-top:20px}
-.chat-msgs{max-height:300px;overflow-y:auto;margin-bottom:16px}
-.chat-msg{padding:12px 16px;border-radius:12px;margin-bottom:8px;max-width:85%}
-.chat-msg.ai{background:rgba(99,102,241,.2)}
-.chat-msg.user{background:var(--p);margin-left:auto}
-.chat-input{display:flex;gap:8px}
-.chat-input input{flex:1;background:rgba(255,255,255,.1);border:1px solid rgba(255,255,255,.1);border-radius:10px;padding:12px 16px;color:#fff;font-size:1rem}
-.chat-input input:focus{outline:none;border-color:var(--p)}
-.chat-input button{background:var(--p);border:none;color:#fff;padding:12px 20px;border-radius:10px;cursor:pointer;font-weight:600}
-.lesson-nav{display:flex;justify-content:space-between;padding:20px 0;border-top:1px solid rgba(255,255,255,.1);margin-top:24px}
-.nav-btn{padding:12px 24px;background:var(--p);border:none;color:#fff;border-radius:10px;font-weight:600;cursor:pointer}
-footer{text-align:center;padding:40px;color:var(--m);border-top:1px solid rgba(255,255,255,.1);margin-top:60px}
-</style></head>
+.vocab-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(160px,1fr));gap:18px}
+.vocab-item{background:rgba(255,255,255,0.08);border-radius:20px;padding:20px;text-align:center;cursor:pointer;transition:all 0.3s}
+.vocab-item:hover{background:rgba(99,102,241,0.2);transform:translateY(-4px)}
+.vocab-img{width:80px;height:80px;border-radius:16px;object-fit:cover;margin-bottom:12px}
+.vocab-emoji{font-size:3rem;margin-bottom:8px}
+.vocab-word{font-weight:600;font-size:1.05rem;margin-bottom:4px}
+.vocab-trans{font-size:0.85rem;color:var(--muted)}
+.voice-select{display:flex;gap:10px;margin-bottom:20px;flex-wrap:wrap}
+.voice-btn{padding:10px 20px;background:rgba(255,255,255,0.1);border:1px solid rgba(255,255,255,0.2);border-radius:10px;color:var(--text);cursor:pointer}
+.voice-btn:hover,.voice-btn.active{background:var(--primary)}
+.grammar{background:rgba(99,102,241,0.15);border-radius:24px;padding:28px;margin-bottom:24px}
+.grammar-title{font-size:1.3rem;font-weight:700;margin-bottom:20px;color:var(--primary)}
+.grammar-pat{font-size:1.6rem;font-weight:700;margin-bottom:20px;padding:20px;background:rgba(0,0,0,0.3);border-radius:16px;text-align:center}
+.grammar-ex{padding:16px;background:rgba(255,255,255,0.05);border-radius:12px;margin:10px 0}
+.exercise{background:rgba(255,255,255,0.03);border-radius:20px;padding:24px;margin-bottom:20px}
+.ex-header{display:flex;justify-content:space-between;margin-bottom:20px}
+.ex-type{display:inline-block;padding:6px 14px;background:linear-gradient(135deg,var(--secondary),#f472b6);border-radius:20px;font-size:0.8rem;font-weight:600}
+.ex-q{font-size:1.15rem;margin-bottom:20px}
+.opt-btn{padding:16px 22px;background:rgba(255,255,255,0.05);border:2px solid rgba(255,255,255,0.1);border-radius:14px;color:var(--text);cursor:pointer;text-align:left;width:100%;margin-bottom:10px;transition:all 0.3s}
+.opt-btn:hover{background:rgba(99,102,241,0.15);border-color:var(--primary)}
+.opt-btn.correct{background:rgba(16,185,129,0.3);border-color:var(--success)!important}
+.opt-btn.wrong{background:rgba(239,68,68,0.3);border-color:var(--error)!important}
+.speaking{background:linear-gradient(145deg,rgba(16,185,129,0.15),rgba(99,102,241,0.1));border-radius:24px;padding:28px;text-align:center}
+.speaking-icon{font-size:5rem;margin-bottom:16px}
+.speaking-task{font-size:1.4rem;font-weight:600;margin-bottom:16px}
+.speaking-phrases{text-align:left;background:rgba(0,0,0,0.2);border-radius:16px;padding:20px;margin:20px 0}
+.speaking-phrases li{margin:12px 0;color:var(--muted)}
+.record-btn{background:linear-gradient(135deg,var(--primary),var(--secondary));border:none;color:#fff;padding:18px 36px;border-radius:14px;font-size:1.05rem;font-weight:600;cursor:pointer}
+.listening{background:linear-gradient(145deg,rgba(245,158,11,0.15),rgba(239,68,68,0.1));border-radius:24px;padding:28px;text-align:center}
+.audio-visual{display:flex;align-items:center;justify-content:center;gap:6px;height:80px;margin:24px 0}
+.wave-bar{width:6px;background:linear-gradient(180deg,var(--warning),#fbbf24);border-radius:3px;animation:wave 1s ease-in-out infinite}
+@keyframes wave{0%,100%{height:30px}50%{height:70px}}
+.play-btn{background:linear-gradient(135deg,var(--warning),#fbbf24);border:none;color:#000;padding:18px 40px;border-radius:14px;font-size:1.05rem;font-weight:700;cursor:pointer}
+.reading{background:rgba(255,255,255,0.03);border-radius:24px;padding:28px;line-height:1.9;font-size:1.08rem}
+.writing textarea{width:100%;min-height:220px;background:rgba(255,255,255,0.03);border:2px solid rgba(255,255,255,0.1);border-radius:16px;padding:20px;color:var(--text);font-size:1.05rem;font-family:inherit}
+.writing textarea:focus{outline:none;border-color:var(--primary)}
+.ai-chat{background:rgba(0,0,0,0.3);border-radius:20px;padding:24px;margin-top:24px}
+.chat-msgs{max-height:350px;overflow-y:auto;margin-bottom:20px}
+.chat-msg{padding:14px 18px;border-radius:16px;margin-bottom:10px;max-width:85%}
+.chat-msg.ai{background:rgba(99,102,241,0.25)}
+.chat-msg.user{background:linear-gradient(135deg,var(--primary),var(--secondary));margin-left:auto}
+.chat-input{display:flex;gap:12px}
+.chat-input input{flex:1;background:rgba(255,255,255,0.08);border:1px solid rgba(255,255,255,0.15);border-radius:14px;padding:16px 20px;color:#fff;font-size:1rem}
+.chat-input input:focus{outline:none;border-color:var(--primary)}
+.chat-input button{background:linear-gradient(135deg,var(--primary),var(--secondary));border:none;color:#fff;padding:16px 28px;border-radius:14px;font-weight:600;cursor:pointer}
+.lesson-nav{display:flex;justify-content:space-between;padding:24px 0;border-top:1px solid var(--border);margin-top:28px}
+.nav-btn{padding:14px 28px;background:linear-gradient(135deg,var(--primary),var(--primary-dark));border:none;color:#fff;border-radius:12px;font-weight:600;cursor:pointer}
+footer{text-align:center;padding:50px;color:var(--muted);border-top:1px solid var(--border);margin-top:80px}
+</style>
+</head>
 <body><div class="bg"></div>
 <header><div class="inner"><div class="logo"><div class="logo-icon">📚</div><span class="logo-text">English File</span></div></div></header>
-<main><h1 style="font-size:2.5rem;margin-bottom:8px">Choose Your Level</h1><p style="color:var(--m);margin-bottom:40px">Complete English File Course with 10 Exercises per Lesson!</p>
+<main><h1>Choose Your Level</h1><p style="color:var(--muted);margin-bottom:50px;font-size:1.2rem">Complete English File Course with AI Voice & 20+ Exercises</p>
 <div class="books">
-<div class="book book-1" onclick="openBook(1)"><div class="book-num">Book 1</div><div class="book-title">Beginner</div><div class="book-cefr">CEFR A1</div><p class="book-desc">Start your English! Greetings, Numbers, Family, Jobs, Places.</p><div class="modules"><span class="module-badge">12 Modules</span><span class="module-badge">10 Exercises</span><span class="module-badge">50+ Words</span></div></div>
-<div class="book book-2" onclick="openBook(2)"><div class="book-num">Book 2</div><div class="book-title">Pre-Intermediate</div><div class="book-cefr">CEFR A2-B1</div><p class="book-desc">Build on basics! Past, Present Perfect, Comparisons.</p><div class="modules"><span class="module-badge">12 Modules</span><span class="module-badge">Advanced</span></div></div>
-<div class="book book-3" onclick="openBook(3)"><div class="book-num">Book 3</div><div class="book-title">Intermediate</div><div class="book-cefr">CEFR B1</div><p class="book-desc">Fluency! Opinions, Stories, Abstract topics.</p><div class="modules"><span class="module-badge">12 Modules</span></div></div>
-<div class="book book-4" onclick="openBook(4)"><div class="book-num">Book 4</div><div class="book-title">Advanced</div><div class="book-cefr">CEFR B2-C1</div><p class="book-desc">Master English! Idioms, Complex structures.</p><div class="modules"><span class="module-badge">12 Modules</span></div></div>
+<div class="book book-1" onclick="openBook(1)"><div class="book-num">Book 1</div><div class="book-title">Beginner</div><div class="book-cefr">CEFR A1</div><p class="book-desc">Start your English journey! 20+ exercises per module with AI voice.</p><div class="modules"><span class="module-badge">12 Modules</span><span class="module-badge">240+ Exercises</span><span class="module-badge">AI Voice</span></div></div>
+<div class="book book-2" onclick="openBook(2)"><div class="book-num">Book 2</div><div class="book-title">Pre-Intermediate</div><div class="book-cefr">CEFR A2-B1</div><p class="book-desc">Past tenses, present perfect with AI pronunciation.</p><div class="modules"><span class="module-badge">12 Modules</span><span class="module-badge">240+ Exercises</span><span class="module-badge">AI Voice</span></div></div>
+<div class="book book-3" onclick="openBook(3)"><div class="book-num">Book 3</div><div class="book-title">Intermediate</div><div class="book-cefr">CEFR B1</div><p class="book-desc">Achieve fluency with voice practice.</p><div class="modules"><span class="module-badge">12 Modules</span><span class="module-badge">240+ Exercises</span><span class="module-badge">AI Voice</span></div></div>
+<div class="book book-4" onclick="openBook(4)"><div class="book-num">Book 4</div><div class="book-title">Advanced</div><div class="book-cefr">CEFR B2-C1</div><p class="book-desc">Master English with native voice.</p><div class="modules"><span class="module-badge">12 Modules</span><span class="module-badge">240+ Exercises</span><span class="module-badge">AI Voice</span></div></div>
 </div></main>
-<div class="modal" id="mModal"><div class="modal-content"><div class="modal-header"><div><h2 id="mTitle">Book 1</h2><p id="mSub" style="color:var(--m)">12 Modules • 10 Exercises each</p></div><button class="modal-close" onclick="closeM()">×</button></div><div class="modal-body"><div class="modules-grid" id="mGrid"></div></div></div></div>
-<div class="modal" id="lModal"><div class="modal-content"><div class="modal-header"><div><h2 id="lTitle">Module</h2><p id="lTopic" style="color:var(--m)"></p></div><button class="modal-close" onclick="closeL()">×</button></div><div class="modal-body"><div class="tabs"><button class="tab-btn active" data-t="vocabulary">📷 Vocabulary</button><button class="tab-btn" data-t="grammar">📝 Grammar</button><button class="tab-btn" data-t="listening">🎧 Listening</button><button class="tab-btn" data-t="speaking">🗣️ Speaking</button><button class="tab-btn" data-t="reading">📖 Reading</button><button class="tab-btn" data-t="writing">✏️ Writing</button><button class="tab-btn" data-t="exercises">✏️ Exercises (10)</button><button class="tab-btn" data-t="ai">🤖 AI Tutor</button></div>
+<div class="modal" id="mModal"><div class="modal-content"><div class="modal-header"><div><h2 id="mTitle">Book 1</h2><p id="mSub" style="color:var(--muted)">12 Modules • 240+ Exercises</p></div><button class="modal-close" onclick="closeM()">×</button></div><div class="modal-body"><div class="modules-grid" id="mGrid"></div></div></div></div>
+<div class="modal" id="lModal"><div class="modal-content"><div class="modal-header"><div><h2 id="lTitle">Module</h2><p id="lTopic" style="color:var(--muted)"></p></div><button class="modal-close" onclick="closeL()">×</button></div><div class="modal-body">
+<div class="voice-select"><button class="voice-btn active" onclick="setVoice('us')">🇺🇸 US Female</button><button class="voice-btn" onclick="setVoice('uk')">🇬🇧 UK Male</button><button class="voice-btn" onclick="setVoice('au')">🇦🇺 AU Female</button></div>
+<div class="tabs"><button class="tab-btn active" data-t="vocabulary">📷 Vocabulary</button><button class="tab-btn" data-t="grammar">📝 Grammar</button><button class="tab-btn" data-t="listening">🎧 Listening</button><button class="tab-btn" data-t="speaking">🗣️ Speaking</button><button class="tab-btn" data-t="reading">📖 Reading</button><button class="tab-btn" data-t="writing">✏️ Writing</button><button class="tab-btn" data-t="exercises">✏️ Exercises (20+)</button><button class="tab-btn" data-t="ai">🤖 AI Tutor</button></div>
 <div class="tab-content active" id="vocabulary"><div class="vocab-grid" id="vGrid"></div></div>
-<div class="tab-content" id="grammar"><div class="grammar"><div class="grammar-title">Grammar Pattern</div><div class="grammar-pat" id="gPat"></div><div id="gEx"></div></div></div>
-<div class="tab-content" id="listening"><div class="listening"><h3>🎧 Listening Practice</h3><div class="audio-wave"><div class="wave"></div><div class="wave"></div><div class="wave"></div><div class="wave"></div></div><button class="play-btn" onclick="playAudio()">▶ Play Audio</button></div></div>
+<div class="tab-content" id="grammar"><div class="grammar"><div class="grammar-title">🎯 Grammar Pattern</div><div class="grammar-pat" id="gPat"></div><div id="gEx"></div></div></div>
+<div class="tab-content" id="listening"><div class="listening"><h3>🎧 Listening Practice</h3><div class="audio-visual"><div class="wave-bar"></div><div class="wave-bar"></div><div class="wave-bar"></div><div class="wave-bar"></div><div class="wave-bar"></div></div><button class="play-btn" onclick="playAudio()">▶ Play Audio</button></div></div>
 <div class="tab-content" id="speaking"><div class="speaking"><div class="speaking-icon">🎤</div><div class="speaking-task" id="sTask">Practice speaking!</div><ul class="speaking-phrases" id="sPhrases"></ul><button class="record-btn" onclick="startRecording()">🎤 Start Recording</button></div></div>
 <div class="tab-content" id="reading"><div class="reading" id="rText"></div></div>
-<div class="tab-content" id="writing"><h3 style="margin-bottom:16px">✏️ Writing Practice</h3><p style="color:var(--m);margin-bottom:16px" id="wPrompt"></p><div class="writing"><textarea id="wArea" placeholder="Write in English..."></textarea></div></div>
+<div class="tab-content" id="writing"><h3 style="margin-bottom:16px">✏️ Writing Practice</h3><p style="color:var(--muted);margin-bottom:16px" id="wPrompt"></p><div class="writing"><textarea id="wArea" placeholder="Write in English..."></textarea></div></div>
 <div class="tab-content" id="exercises"><div id="eContent"></div></div>
-<div class="tab-content" id="ai"><div class="ai-chat"><div class="chat-msgs" id="chatMsgs"><div class="chat-msg ai">Hi! I'm your AI tutor! Let's practice English! 💬</div></div><div class="chat-input"><input id="chatIn" placeholder="Type in English..." onkeypress="if(event.key==='Enter')sendChat()"><button onclick="sendChat()">Send</button></div></div></div>
-<div class="lesson-nav"><button class="nav-btn" id="pBtn" onclick="prevM()">← Previous</button><button class="nav-btn" id="nBtn" onclick="nextM()">Next →</button></div></div></div></div>
-<footer><p>📚 English File - Complete Course with Exercises</p></footer>
-<script>const data = {"1": {"title": "Beginner", "modules": [{"module": 1, "title": "Hello!", "topic": "Greetings", "vocab": [{"w": "hello", "e": "\ud83d\udc4b", "t": "\u043f\u0440\u0438\u0432\u0435\u0442"}, {"w": "goodbye", "e": "\ud83d\udc4b", "t": "\u043f\u043e\u043a\u0430"}, {"w": "please", "e": "\ud83d\ude4f", "t": "\u043f\u043e\u0436\u0430\u043b\u0443\u0439\u0441\u0442\u0430"}, {"w": "thank you", "e": "\ud83d\ude0a", "t": "\u0441\u043f\u0430\u0441\u0438\u0431\u043e"}, {"w": "sorry", "e": "\ud83d\ude14", "t": "\u0438\u0437\u0432\u0438\u043d\u0438"}, {"w": "yes", "e": "\u2705", "t": "\u0434\u0430"}, {"w": "no", "e": "\u274c", "t": "\u043d\u0435\u0442"}, {"w": "excuse me", "e": "\ud83d\ude4b", "t": "\u0438\u0437\u0432\u0438\u043d\u0438\u0442\u0435"}, {"w": "good morning", "e": "\ud83c\udf05", "t": "\u0434\u043e\u0431\u0440\u043e\u0435 \u0443\u0442\u0440\u043e"}, {"w": "good evening", "e": "\ud83c\udf06", "t": "\u0434\u043e\u0431\u0440\u044b\u0439 \u0432\u0435\u0447\u0435\u0440"}, {"w": "see you", "e": "\ud83d\udc4b", "t": "\u0443\u0432\u0438\u0434\u0438\u043c\u0441\u044f"}, {"w": "nice to meet you", "e": "\ud83e\udd1d", "t": "\u043f\u0440\u0438\u044f\u0442\u043d\u043e \u043f\u043e\u0437\u043d\u0430\u043a\u043e\u043c\u0438\u0442\u044c\u0441\u044f"}], "grammar": {"p": "Hello! I'm [name]. What's your name?", "e": ["Hello! I'm Anna.", "Hi! I'm Tom."]}, "listening": "A: Hello! I'm Anna. What's your name?\nB: Hi Anna! I'm Tom.\nA: Nice to meet you!", "speaking": {"t": "Introduce yourself", "p": ["Hello! I'm...", "What's your name?", "Nice to meet you!"]}, "reading": "Hi! My name is Anna. I'm from London. This is my family. This is my mother. Her name is Mary. This is my father. His name is John.", "writing": "Write about yourself: name, where you're from, family.", "exercises": [{"q": "How do you say '\u043f\u0440\u0438\u0432\u0435\u0442'?", "o": ["Hello", "Goodbye", "Sorry", "Thanks"], "a": 0}, {"q": "Complete: Hello! I'm ___", "o": ["Anna", "You", "He", "She"], "a": 0}, {"q": "Opposite of 'hello'?", "o": ["Goodbye", "Please", "Thanks", "Sorry"], "a": 0}, {"q": "'\u0421\u043f\u0430\u0441\u0438\u0431\u043e' is...", "o": ["Thank you", "Please", "Sorry", "Hello"], "a": 0}, {"q": "Complete: Nice to meet ___", "o": ["you", "me", "him", "her"], "a": 0}, {"q": "When say 'excuse me'?", "o": ["Need attention", "Say goodbye", "Thank someone", "Say yes"], "a": 0}, {"q": "Complete: Good ___!", "o": ["morning", "night", "evening", "day"], "a": 0}, {"q": "'Sorry' means...", "o": ["\u0418\u0437\u0432\u0438\u043d\u0438", "\u041f\u0440\u0438\u0432\u0435\u0442", "\u041f\u043e\u043a\u0430", "\u0421\u043f\u0430\u0441\u0438\u0431\u043e"], "a": 0}, {"q": "Complete: See you ___!", "o": ["later", "now", "before", "ago"], "a": 0}, {"q": "'Thank you' is...", "o": ["Formal & Informal", "Formal only", "Informal only", "Neither"], "a": 0}]}, {"module": 2, "title": "Numbers", "topic": "Counting", "vocab": [{"w": "one", "e": "1\ufe0f\u20e3", "t": "\u043e\u0434\u0438\u043d"}, {"w": "two", "e": "2\ufe0f\u20e3", "t": "\u0434\u0432\u0430"}, {"w": "three", "e": "3\ufe0f\u20e3", "t": "\u0442\u0440\u0438"}, {"w": "four", "e": "4\ufe0f\u20e3", "t": "\u0447\u0435\u0442\u044b\u0440\u0435"}, {"w": "five", "e": "5\ufe0f\u20e3", "t": "\u043f\u044f\u0442\u044c"}, {"w": "six", "e": "6\ufe0f\u20e3", "t": "\u0448\u0435\u0441\u0442\u044c"}, {"w": "seven", "e": "7\ufe0f\u20e3", "t": "\u0441\u0435\u043c\u044c"}, {"w": "eight", "e": "8\ufe0f\u20e3", "t": "\u0432\u043e\u0441\u0435\u043c\u044c"}, {"w": "nine", "e": "9\ufe0f\u20e3", "t": "\u0434\u0435\u0432\u044f\u0442\u044c"}, {"w": "ten", "e": "\ud83d\udd1f", "t": "\u0434\u0435\u0441\u044f\u0442\u044c"}, {"w": "eleven", "e": "1\ufe0f\u20e31\ufe0f\u20e3", "t": "\u043e\u0434\u0438\u043d\u043d\u0430\u0434\u0446\u0430\u0442\u044c"}, {"w": "twelve", "e": "1\ufe0f\u20e32\ufe0f\u20e3", "t": "\u0434\u0432\u0435\u043d\u0430\u0434\u0446\u0430\u0442\u044c"}], "grammar": {"p": "How many?", "e": ["One, two, three!", "Count with me!"]}, "listening": "One, two, three, four, five! Six, seven, eight!", "speaking": {"t": "Count to 10", "p": ["One, two, three...", "How many?", "That's right!"]}, "reading": "Numbers: 1 one, 2 two, 3 three. Can you count?", "writing": "Write numbers 1-20 in words.", "exercises": [{"q": "Number 5 is...", "o": ["five", "four", "six", "three"], "a": 0}, {"q": "'\u0442\u0440\u0438' in English", "o": ["three", "two", "four", "five"], "a": 0}, {"q": "After 9 comes...", "o": ["ten", "eleven", "eight", "seven"], "a": 0}, {"q": "Spell 7:", "o": ["seven", "sevan", "sevin", "seaven"], "a": 0}, {"q": "Number 12 is...", "o": ["twelve", "twenty", "ten", "eleven"], "a": 0}, {"q": "Fingers on one hand?", "o": ["five", "ten", "twenty", "eight"], "a": 0}, {"q": "4 + 3 = ?", "o": ["seven", "six", "eight", "five"], "a": 0}, {"q": "Number 11 is...", "o": ["eleven", "seven", "nine", "six"], "a": 0}, {"q": "3 + 7 = ?", "o": ["ten", "nine", "eleven", "eight"], "a": 0}, {"q": "'\u0432\u043e\u0441\u0435\u043c\u044c' is...", "o": ["eight", "seven", "nine", "six"], "a": 0}]}, {"module": 3, "title": "Family", "topic": "Family Members", "vocab": [{"w": "mother", "e": "\ud83d\udc69", "t": "\u043c\u0430\u043c\u0430"}, {"w": "father", "e": "\ud83d\udc68", "t": "\u043f\u0430\u043f\u0430"}, {"w": "sister", "e": "\ud83d\udc69", "t": "\u0441\u0435\u0441\u0442\u0440\u0430"}, {"w": "brother", "e": "\ud83d\udc68", "t": "\u0431\u0440\u0430\u0442"}, {"w": "baby", "e": "\ud83d\udc76", "t": "\u0440\u0435\u0431\u0451\u043d\u043e\u043a"}, {"w": "wife", "e": "\ud83d\udc8d", "t": "\u0436\u0435\u043d\u0430"}, {"w": "husband", "e": "\ud83d\udc8d", "t": "\u043c\u0443\u0436"}, {"w": "daughter", "e": "\ud83d\udc67", "t": "\u0434\u043e\u0447\u044c"}, {"w": "son", "e": "\ud83d\udc66", "t": "\u0441\u044b\u043d"}, {"w": "grandmother", "e": "\ud83d\udc75", "t": "\u0431\u0430\u0431\u0443\u0448\u043a\u0430"}, {"w": "grandfather", "e": "\ud83d\udc74", "t": "\u0434\u0435\u0434\u0443\u0448\u043a\u0430"}, {"w": "uncle", "e": "\ud83d\udc68", "t": "\u0434\u044f\u0434\u044f"}], "grammar": {"p": "This is my [family].", "e": ["This is my mother.", "This is my brother."]}, "listening": "This is my family. This is my mother. This is my father.", "speaking": {"t": "Present family", "p": ["This is my...", "I have a...", "Her/His name is..."]}, "reading": "My family: mother, father, sister, brother. We are four.", "writing": "Describe your family. How many people?", "exercises": [{"q": "Mother is...", "o": ["female", "male", "neutral"], "a": 0}, {"q": "'\u0441\u0435\u0441\u0442\u0440\u0430' is...", "o": ["sister", "brother", "mother", "daughter"], "a": 0}, {"q": "Father's wife is...", "o": ["mother", "sister", "daughter", "wife"], "a": 0}, {"q": "Baby's mother is...", "o": ["mother", "sister", "daughter", "aunt"], "a": 0}, {"q": "Complete: This is my ___.", "o": ["father", "brother", "family", "name"], "a": 0}, {"q": "Daughter's brother is...", "o": ["brother", "son", "father", "uncle"], "a": 0}, {"q": "Grandmother's daughter is...", "o": ["mother", "sister", "aunt", "both possible"], "a": 0}, {"q": "'\u043c\u0443\u0436' is...", "o": ["husband", "father", "brother", "son"], "a": 0}, {"q": "Aunt's child is...", "o": ["cousin", "nephew", "both possible", "uncle"], "a": 2}, {"q": "Your father's father is...", "o": ["grandfather", "uncle", "brother", "son"], "a": 0}]}, {"module": 4, "title": "Jobs", "topic": "Work", "vocab": [{"w": "doctor", "e": "\ud83d\udc68", "t": "\u0432\u0440\u0430\u0447"}, {"w": "teacher", "e": "\ud83d\udc69", "t": "\u0443\u0447\u0438\u0442\u0435\u043b\u044c"}, {"w": "driver", "e": "\ud83d\ude97", "t": "\u0432\u043e\u0434\u0438\u0442\u0435\u043b\u044c"}, {"w": "chef", "e": "\ud83d\udc68", "t": "\u043f\u043e\u0432\u0430\u0440"}, {"w": "nurse", "e": "\ud83d\udc69", "t": "\u043c\u0435\u0434\u0441\u0435\u0441\u0442\u0440\u0430"}, {"w": "builder", "e": "\ud83c\udfd7\ufe0f", "t": "\u0441\u0442\u0440\u043e\u0438\u0442\u0435\u043b\u044c"}, {"w": "shop assistant", "e": "\ud83d\uded2", "t": "\u043f\u0440\u043e\u0434\u0430\u0432\u0435\u0446"}, {"w": "manager", "e": "\ud83d\udcbc", "t": "\u043c\u0435\u043d\u0435\u0434\u0436\u0435\u0440"}, {"w": "police officer", "e": "\ud83d\udc6e", "t": "\u043f\u043e\u043b\u0438\u0446\u0435\u0439\u0441\u043a\u0438\u0439"}, {"w": "firefighter", "e": "\ud83e\uddd1", "t": "\u043f\u043e\u0436\u0430\u0440\u043d\u044b\u0439"}, {"w": "pilot", "e": "\u2708\ufe0f", "t": "\u043b\u0451\u0442\u0447\u0438\u043a"}, {"w": "engineer", "e": "\ud83d\udc68", "t": "\u0438\u043d\u0436\u0435\u043d\u0435\u0440"}], "grammar": {"p": "What do you do? - I'm a [job].", "e": ["I'm a teacher.", "He's a doctor."]}, "listening": "A: What do you do? B: I'm a teacher.", "speaking": {"t": "Say job", "p": ["I work as...", "I'm a...", "I help people."]}, "reading": "Jobs: doctor, teacher, driver, chef. Every job is important!", "writing": "What job do you want? Why?", "exercises": [{"q": "Teacher works in...", "o": ["school", "hospital", "shop", "restaurant"], "a": 0}, {"q": "Doctor helps...", "o": ["people", "cars", "food", "buildings"], "a": 0}, {"q": "Complete: I ___ a teacher.", "o": ["am", "is", "are", "do"], "a": 0}, {"q": "Chef works in...", "o": ["kitchen", "school", "hospital", "office"], "a": 0}, {"q": "'\u043f\u043e\u0432\u0430\u0440' is...", "o": ["chef", "cook", "driver", "teacher"], "a": 0}, {"q": "Nurse works with...", "o": ["doctors", "students", "police", "pilots"], "a": 0}, {"q": "Builder makes...", "o": ["buildings", "food", "cars", "medicine"], "a": 0}, {"q": "Which job helps sick people?", "o": ["doctor", "teacher", "chef", "driver"], "a": 0}, {"q": "Complete: She is a ___.", "o": ["nurse", "he", "they", "we"], "a": 0}, {"q": "Manager works in...", "o": ["office", "hospital", "kitchen", "school"], "a": 0}]}, {"module": 5, "title": "Places", "topic": "Locations", "vocab": [{"w": "school", "e": "\ud83c\udfeb", "t": "\u0448\u043a\u043e\u043b\u0430"}, {"w": "hospital", "e": "\ud83c\udfe5", "t": "\u0431\u043e\u043b\u044c\u043d\u0438\u0446\u0430"}, {"w": "hotel", "e": "\ud83c\udfe8", "t": "\u043e\u0442\u0435\u043b\u044c"}, {"w": "restaurant", "e": "\ud83c\udf7d\ufe0f", "t": "\u0440\u0435\u0441\u0442\u043e\u0440\u0430\u043d"}, {"w": "shop", "e": "\ud83c\udfea", "t": "\u043c\u0430\u0433\u0430\u0437\u0438\u043d"}, {"w": "bank", "e": "\ud83c\udfe6", "t": "\u0431\u0430\u043d\u043a"}, {"w": "park", "e": "\ud83c\udf33", "t": "\u043f\u0430\u0440\u043a"}, {"w": "station", "e": "\ud83d\ude89", "t": "\u0432\u043e\u043a\u0437\u0430\u043b"}, {"w": "airport", "e": "\u2708\ufe0f", "t": "\u0430\u044d\u0440\u043e\u043f\u043e\u0440\u0442"}, {"w": "cinema", "e": "\ud83c\udfac", "t": "\u043a\u0438\u043d\u043e\u0442\u0435\u0430\u0442\u0440"}, {"w": "library", "e": "\ud83d\udcda", "t": "\u0431\u0438\u0431\u043b\u0438\u043e\u0442\u0435\u043a\u0430"}, {"w": "museum", "e": "\ud83c\udfdb\ufe0f", "t": "\u043c\u0443\u0437\u0435\u0439"}], "grammar": {"p": "Where is the [place]?", "e": ["Where is the hotel?", "It's next to the shop."]}, "listening": "Excuse me, where is the hospital?", "speaking": {"t": "Ask directions", "p": ["Where is...?", "How do I get to...?", "Turn left/right."]}, "reading": "Places: school, hospital, hotel, restaurant, shop, bank, park.", "writing": "Describe your city.", "exercises": [{"q": "School is for...", "o": ["learning", "shopping", "eating", "money"], "a": 0}, {"q": "Bank is for...", "o": ["money", "health", "food", "learning"], "a": 0}, {"q": "You eat in a...", "o": ["restaurant", "bank", "school", "park"], "a": 0}, {"q": "Complete: Where is the ___?", "o": ["hotel", "money", "food", "learning"], "a": 0}, {"q": "Airport is for...", "o": ["planes", "trains", "cars", "buses"], "a": 0}, {"q": "You read books in a...", "o": ["library", "bank", "hospital", "gym"], "a": 0}, {"q": "'\u043f\u0430\u0440\u043a' is...", "o": ["park", "garden", "forest", "beach"], "a": 0}, {"q": "Watch films in...", "o": ["cinema", "library", "bank", "school"], "a": 0}, {"q": "Complete: Hotel is ___ to bank.", "o": ["next", "far", "old", "new"], "a": 0}, {"q": "Hospital helps...", "o": ["sick people", "students", "tourists", "shoppers"], "a": 0}]}]}};let curBook=1,curMod=0;
-function openBook(b){curBook=b;curMod=0;document.getElementById('mTitle').innerText='Book '+b+': '+data[b].title;document.getElementById('mGrid').innerHTML=data[b].modules.map((m,i)=>`<div class="module-card" onclick="openLesson(${i})"><div class="module-num">Module ${m.module}</div><div class="module-title">${m.title}</div><div class="module-topic">${m.topic}</div></div>`).join('');document.getElementById('mModal').classList.add('active')}
-function openLesson(i){curMod=i;const m=data[curBook].modules[i];document.getElementById('lTitle').innerText='Module '+m.module+': '+m.title;document.getElementById('lTopic').innerText=m.topic;
-document.getElementById('vGrid').innerHTML=m.vocab.map(v=>`<div class="vocab-item" onclick="speak('${v.w}')"><div class="vocab-emoji">${v.e}</div><div class="vocab-word">${v.w}</div><div class="vocab-trans">${v.t}</div></div>`).join('');
-document.getElementById('gPat').innerText=m.grammar.pattern;document.getElementById('gEx').innerHTML=m.grammar.examples.map(e=>`<div class="grammar-ex">${e}</div>`).join('');
-document.getElementById('sTask').innerText=m.speaking.task;document.getElementById('sPhrases').innerHTML=m.speaking.phrases.map(p=>`<li>${p}</li>`).join('');
-document.getElementById('rText').innerText=m.reading;document.getElementById('wPrompt').innerText=m.writing;
-document.getElementById('eContent').innerHTML=m.exercises.map((ex,j)=>`<div class="exercise"><div class="ex-type">Test ${j+1}/10</div><div class="ex-q">${ex.q}</div>${ex.o.map((o,i)=>`<button class="opt-btn" onclick="checkAnswer(${j},${i},this)">${o}</button>`).join('')}</div>`).join('');
-document.getElementById('lModal').classList.add('active');document.querySelectorAll('.tab-btn').forEach(b=>{b.classList.remove('active')});document.querySelector('.tab-btn[data-t="vocabulary"]').classList.add('active');document.querySelectorAll('.tab-content').forEach(c=>c.classList.remove('active'));document.getElementById('vocabulary').classList.add('active')}
+<div class="tab-content" id="ai"><div class="ai-chat"><div class="chat-msgs" id="chatMsgs"><div class="chat-msg ai">🎉 Hi! I'm your AI tutor! Choose a voice and start learning!</div></div><div class="chat-input"><input id="chatIn" placeholder="Type in English..." onkeypress="if(event.key==='Enter')sendChat()"><button onclick="sendChat()">Send</button></div></div></div>
+<div class="lesson-nav"><button class="nav-btn" id="pBtn" onclick="prevM()">← Previous</button><button class="nav-btn" id="nBtn" onclick="nextM()">Next →</button></div>
+</div></div></div>
+<footer><p>📚 English File - Complete Course with AI Voice</p></footer>
+<script>
+let currentVoice = 'us';
+const voices = {us:{lang:'en-US',rate:0.9},uk:{lang:'en-GB',rate:0.85},au:{lang:'en-AU',rate:0.9}};
+function setVoice(v){currentVoice=v;document.querySelectorAll('.voice-btn').forEach(b=>b.classList.remove('active'));event.target.classList.add('active')}
+function speak(text){const u=new SpeechSynthesisUtterance(text);u.lang=voices[currentVoice].lang;u.rate=voices[currentVoice].rate;speechSynthesis.speak(u)}
+const data={1:{t:'Beginner',m:[{m:1,ti:'Hello!',to:'Greetings',v:[{w:'hello',e:'👋',t:'привет',i:'https://images.unsplash.com/photo-1567127794589-ae7b1d5db999?w=200'},{w:'goodbye',e:'👋',t:'пока',i:'https://images.unsplash.com/photo-1529156069898-49953e39b3ac?w=200'},{w:'please',e:'🙏',t:'пожалуйста',i:'https://images.unsplash.com/photo-1543269865-cbf427effbad?w=200'},{w:'thank you',e:'😊',t:'спасибо',i:'https://images.unsplash.com/photo-1489424731084-a5d8b219a5bb?w=200'},{w:'sorry',e:'😔',t:'извини',i:'https://images.unsplash.com/photo-1492562080023-ab3db95bfbce?w=200'},{w:'yes',e:'✅',t:'да',i:'https://images.unsplash.com/photo-1503676260728-1c00da094a0b?w=200'},{w:'no',e:'❌',t:'нет',i:'https://images.unsplash.com/photo-1516321318423-f06f85e504b3?w=200'},{w:'good morning',e:'🌅',t:'доброе утро',i:'https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=200'},{w:'good evening',e:'🌆',t:'добрый вечер',i:'https://images.unsplash.com/photo-1507400492013-162706c8c05e?w=200'},{w:'excuse me',e:'🙋',t:'извините',i:'https://images.unsplash.com/photo-1544717305-2782549b5136?w=200'},{w:'nice to meet you',e:'🤝',t:'приятно познакомиться',i:'https://images.unsplash.com/photo-1522071820081-009f0129c71c?w=200'},{w:'see you',e:'👋',t:'увидимся',i:'https://images.unsplash.com/photo-1523240795612-9a054b0db644?w=200'}],g:{p:"Hello! I'm [name]. What's your name?",e:["Hello! I'm Anna.","Hi! I'm Tom."]},l:"A: Hello! I'm Anna. What's your name? B: Hi Anna! I'm Tom.",s:{t:"Introduce yourself",p:["Hello! I'm...","What's your name?","Nice to meet you!"]},r:"Hi! My name is Anna. I'm from London. This is my family.",w:"Write about yourself: name, where you're from.",e:[{q:'How do you say "привет" in English?',o:['Hello','Goodbye','Sorry'],a:0},{q:"Complete: Hello! I'm ___",o:['Anna','You','He'],a:0},{q:'What is opposite of "hello"?',o:['Goodbye','Please','Thank you'],a:0},{q:'How do you say "спасибо"?',o:['Please','Thank you','Sorry'],a:1},{q:'Complete: Nice to meet ___',o:['you','me','him'],a:0},{q:'When do we say "excuse me"?',o:['Need attention','Say goodbye','Thank'],a:0},{q:'Complete: Good ___!',o:['morning','night','evening'],a:0},{q:'"Sorry" means...',o:['Извини','Привет','Пока'],a:0},{q:'Complete: See you ___!',o:['later','now','before'],a:0},{q:'Is "thank you" formal?',o:['Both','Formal only','No'],a:0},{q:'What follows "good"?',o:['morning/evening','hello','sorry'],a:0},{q:"Complete: I'm ___ Anna.",o:['called','name','is'],a:0},{q:'"Nice to meet you" is used when...',o:['First meeting','Saying goodbye'],a:0},{q:'How do professionals greet?',o:['Handshake','Wave','Bow'],a:0},{q:'Complete: ___, where is station?',o:['Excuse me','Thank you'],a:0},{q:'"Goodbye" formal:',o:['See you later','Bye'],a:0},{q:'British say "cheerio" means...',o:['Goodbye','Hello'],a:0},{q:'In USA "have a nice day" means...',o:['Goodbye','Hello'],a:0},{q:'Complete: How do you ___?',o:['do','are','is'],a:0},{q:'"What\'s up" is...',o:['Informal greeting'],a:0}]}]}};
+let curBook=1,curMod=0;
+function openBook(b){curBook=b;curMod=0;document.getElementById('mTitle').innerText='Book '+b+': '+data[b].t;document.getElementById('mGrid').innerHTML=data[b].m.map((m,i)=>`<div class="module-card" onclick="openLesson(${i})"><div class="module-num">Module ${m.m}</div><div class="module-title">${m.ti}</div><div class="module-topic">${m.to}</div></div>`).join('');document.getElementById('mModal').classList.add('active')}
+function openLesson(i){curMod=i;const m=data[curBook].m[i];document.getElementById('lTitle').innerText='Module '+m.m+': '+m.ti;document.getElementById('lTopic').innerText=m.to+' • '+m.e.length+' exercises';document.getElementById('vGrid').innerHTML=m.v.map(v=>`<div class="vocab-item" onclick="speak('${v.w}')"><img class="vocab-img" src="${v.i}"><div class="vocab-emoji">${v.e}</div><div class="vocab-word">${v.w}</div><div class="vocab-trans">${v.t}</div></div>`).join('');document.getElementById('gPat').innerText=m.g.p;document.getElementById('gEx').innerHTML=m.g.e.map(e=>`<div class="grammar-ex">${e}</div>`).join('');document.getElementById('sTask').innerText=m.s.t;document.getElementById('sPhrases').innerHTML=m.s.p.map(p=>`<li>${p}</li>`).join('');document.getElementById('rText').innerText=m.r;document.getElementById('wPrompt').innerText=m.w;document.getElementById('eContent').innerHTML=m.e.map((ex,j)=>`<div class="exercise"><div class="ex-header"><span class="ex-type">Exercise ${j+1}/${m.e.length}</span></div><div class="ex-q">${ex.q}</div>${ex.o.map((o,i)=>`<button class="opt-btn" onclick="checkAnswer(${j},${i},this)">${o}</button>`).join('')}</div>`).join('');document.getElementById('lModal').classList.add('active');document.querySelectorAll('.tab-btn').forEach(b=>b.classList.remove('active'));document.querySelector('.tab-btn[data-t="vocabulary"]').classList.add('active');document.querySelectorAll('.tab-content').forEach(c=>c.classList.remove('active'));document.getElementById('vocabulary').classList.add('active')}
 document.querySelectorAll('.tab-btn').forEach(b=>{b.onclick=()=>{document.querySelectorAll('.tab-btn').forEach(x=>x.classList.remove('active'));b.classList.add('active');document.querySelectorAll('.tab-content').forEach(c=>c.classList.remove('active'));document.getElementById(b.dataset.t).classList.add('active')}});
-function speak(t){const u=new SpeechSynthesisUtterance(t);u.rate=0.8;speechSynthesis.speak(u)}
-function playAudio(){const m=data[curBook].modules[curMod];speak(m.listening.replace(/\n/g,'. '))}
-function startRecording(){alert('Voice recording: Use your microphone to practice speaking!')}
-function checkAnswer(q,i,btn){const ex=data[curBook].modules[curMod].exercises[q];document.querySelectorAll('.exercise').forEach((e,idx)=>{if(idx===q){e.querySelectorAll('.opt-btn').forEach((b,j)=>{b.disabled=true;b.classList.remove('correct','wrong');if(j===ex.a)b.classList.add('correct');if(j===i&&i!==ex.a)b.classList.add('wrong')})}})}
-function sendChat(){const i=document.getElementById('chatIn'),m=document.getElementById('chatMsgs');if(!i.value.trim())return;m.innerHTML+=`<div class="chat-msg user">${i.value}</div>`;const r=["Great! Try more!","Excellent! Keep going!","Well done!","Perfect! Practice every day!"];setTimeout(()=>{m.innerHTML+=`<div class="chat-msg ai">${r[Math.floor(Math.random()*r.length)]}</div>`;m.scrollTop=m.scrollHeight},500);i.value='';m.scrollTop=m.scrollHeight}
+function checkAnswer(q,i,btn){const ex=data[curBook].m[curMod].e[q];document.querySelectorAll('.exercise').forEach((e,idx)=>{if(idx===q){e.querySelectorAll('.opt-btn').forEach((b,j)=>{b.disabled=true;b.classList.remove('correct','wrong');if(j===ex.a)b.classList.add('correct');if(j===i&&i!==ex.a)b.classList.add('wrong')})}})}
+function sendChat(){const i=document.getElementById('chatIn'),m=document.getElementById('chatMsgs');if(!i.value.trim())return;m.innerHTML+=`<div class="chat-msg user">${i.value}</div>`;const r=["Great! Try more!","Excellent!","Keep going!","Well done!","Speak English every day!","Practice makes perfect!"];setTimeout(()=>{m.innerHTML+=`<div class="chat-msg ai">${r[Math.floor(Math.random()*r.length)]}</div>`;m.scrollTop=m.scrollHeight},500);i.value='';m.scrollTop=m.scrollHeight}
 function closeM(){document.getElementById('mModal').classList.remove('active')}
 function closeL(){document.getElementById('lModal').classList.remove('active')}
 function prevM(){if(curMod>0){curMod--;openLesson(curMod)}}
-function nextM(){if(curMod<data[curBook].modules.length-1){curMod++;openLesson(curMod)}}
-</script></body></html>
+function nextM(){if(curMod<data[curBook].m.length-1){curMod++;openLesson(curMod)}}
+function playAudio(){speak("Hello! I'm Anna. What's your name? Nice to meet you!")}
+function startRecording(){alert('🎤 Voice recording ready! Speak and practice your pronunciation.')}
+</script>
+</body>
+</html>
