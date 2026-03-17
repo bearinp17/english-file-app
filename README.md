@@ -1,51 +1,78 @@
 # 📚 English File App
 
-**Language Learning App based on English File textbook system**
+**Learn English through English!**
 
-## 📖 About
+Based on the **English File (Oxford) 4th Edition** textbook methodology.
 
-A comprehensive English learning application following the English File (Oxford) textbook methodology - from A1 (Beginner) to C1+ (Advanced Plus).
+## 🎯 Our Method
 
-## 🎯 Features
+Unlike other apps that translate to Russian, English File teaches **ONLY in English**:
+- 📷 **Pictures** → learn words visually
+- 📝 **Context** → grammar in real sentences  
+- 🗣️ **Speaking** → practice from day one
+- 🎧 **Audio** → listen and repeat
 
-- **8 Levels**: Beginner → Advanced Plus (CEFR A1-C1+)
-- **Interactive Lessons**: Text, audio, and interactive exercises
-- **AI Tutor**: Chat with AI to practice conversations
-- **Progress Tracking**: Track your learning journey
-- **Tests**: Grammar and vocabulary quizzes
+## 📖 English File Structure
+
+| Book | Level | CEFR | Description |
+|------|-------|------|-------------|
+| 1 | Beginner | A1 | Start with pictures |
+| 2 | Pre-Intermediate | A2-B1 | Build confidence |
+| 3 | Intermediate | B1 | Communicate fluently |
+| 4 | Advanced | B2-C1 | Master English |
+
+## 📱 Features
+
+- ✅ **4 Levels** (English File system)
+- ✅ **Vocabulary** - pictures + words (no translation!)
+- ✅ **Grammar** - shown in context
+- ✅ **Exercises** - listen, speak, write
+- ✅ **AI Tutor** - practice speaking
+- ✅ **Progress Tracking**
 
 ## 🏗️ Architecture
 
 ```
 english-file-app/
-├── backend/          # FastAPI Python backend
-├── frontend/         # React web interface  
-├── mobile/           # React Native mobile app
-└── docs/             # Documentation
+├── backend/          # FastAPI Python
+│   └── main.py      # API with English File curriculum
+├── mobile/          # React Native
+│   └── App.js      # Mobile app
 ```
 
-## 🚀 Tech Stack
+## 🚀 Quick Start
 
-| Component | Technology |
-|-----------|-------------|
-| Backend | FastAPI (Python) |
-| Database | PostgreSQL |
-| AI | OpenAI / Groq |
-| Mobile | React Native |
-| Web | React |
+### Backend
+```bash
+cd backend
+pip install -r requirements.txt
+uvicorn main:app --host 0.0.0.0 --port 8000
+```
 
-## 📱 Levels (English File System)
+### Mobile
+```bash
+cd mobile
+npm install
+npx expo start
+```
 
-| Level | CEFR | Lessons |
-|-------|------|---------|
-| 1 | A1 | Beginner |
-| 2 | A1-A2 | Elementary |
-| 3 | A2-B1 | Pre-Intermediate |
-| 4 | B1 | Intermediate |
-| 5 | B1+ | Intermediate Plus |
-| 6 | B2 | Upper-Intermediate |
-| 7 | C1 | Advanced |
-| 8 | C1+ | Advanced Plus |
+## 📡 API Endpoints
+
+| Method | Endpoint | Description |
+|--------|----------|-------------|
+| GET | `/levels` | Get 4 English File levels |
+| GET | `/levels/{id}/lessons` | Get lessons |
+| GET | `/lessons/{id}` | Get lesson (vocab, grammar, exercises) |
+| POST | `/ai/chat` | Practice with AI tutor |
+
+## 🎓 Lesson Structure
+
+Each lesson follows English File method:
+
+1. **A. Vocabulary** - Learn through pictures
+2. **B. Grammar** - See pattern in context
+3. **C. Practice** - Interactive exercises
+4. **D. Speaking** - Real communication
 
 ## 📄 License
 

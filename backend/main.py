@@ -1,8 +1,8 @@
 """
 English File App - Backend API
-FastAPI application for language learning
+Based on English File (Oxford) 4th Edition - Learn English through English!
 """
-from fastapi import FastAPI, HTTPException, Depends
+from fastapi import FastAPI, HTTPException
 from pydantic import BaseModel
 from typing import Optional, List
 from datetime import datetime
@@ -10,162 +10,173 @@ import uuid
 
 app = FastAPI(title="English File API", version="1.0.0")
 
-# ==================== MODELS ====================
+# ==================== ENGLISH FILE STRUCTURE ====================
+# Based on English File Oxford 4th Edition
+# 4 Books: Beginner → Advanced
+# Each book has 12 modules (lessons)
+# Learn English ONLY in English - no translation!
 
-class User(BaseModel):
-    id: str
-    email: str
-    name: str
-    current_level: int = 1
-    created_at: datetime = None
-
-class Lesson(BaseModel):
-    id: str
-    level_id: int
-    title: str
-    content: str
-    audio_url: Optional[str] = None
-    exercises: List[dict] = []
-
-class Exercise(BaseModel):
-    id: str
-    lesson_id: str
-    type: str  # grammar, vocabulary, listening, speaking
-    question: str
-    answer: str
-    options: Optional[List[str]] = None
-
-class UserProgress(BaseModel):
-    user_id: str
-    lesson_id: str
-    completed: bool = False
-    score: Optional[int] = None
-
-# ==================== DATA ====================
-
-# English File Levels
+# English File Levels (4th Edition)
 LEVELS = [
-    {"id": 1, "name": "Beginner", "cefr": "A1", "description": "Start learning English from scratch"},
-    {"id": 2, "name": "Elementary", "cefr": "A1-A2", "description": "Basic conversations and grammar"},
-    {"id": 3, "name": "Pre-Intermediate", "cefr": "A2-B1", "description": "More complex structures"},
-    {"id": 4, "name": "Intermediate", "cefr": "B1", "description": "Fluency in everyday situations"},
-    {"id": 5, "name": "Intermediate Plus", "cefr": "B1+", "description": "Advanced intermediate"},
-    {"id": 6, "name": "Upper-Intermediate", "cefr": "B2", "description": "Complex topics and discussions"},
-    {"id": 7, "name": "Advanced", "cefr": "C1", "description": "Near-native fluency"},
-    {"id": 8, "name": "Advanced Plus", "cefr": "C1+", "description": "Mastery of English"},
+    {
+        "id": 1, 
+        "book": "English File Elementary", 
+        "title": "Beginner", 
+        "cefr": "A1",
+        "description": "Start with pictures and simple sentences",
+        "color": "#4CAF50"
+    },
+    {
+        "id": 2, 
+        "book": "English File Elementary", 
+        "title": "Pre-Intermediate", 
+        "cefr": "A2-B1",
+        "description": "Build confidence in everyday situations",
+        "color": "#2196F3"
+    },
+    {
+        "id": 3, 
+        "book": "English File Intermediate", 
+        "title": "Intermediate", 
+        "cefr": "B1",
+        "description": "Communicate with fluency",
+        "color": "#9C27B0"
+    },
+    {
+        "id": 4, 
+        "book": "English File Upper-Intermediate", 
+        "title": "Advanced", 
+        "cefr": "B2-C1",
+        "description": "Master complex English",
+        "color": "#FF5722"
+    },
 ]
 
-# Sample lessons for Level 1
+# ==================== LESSON STRUCTURE ====================
+# Each lesson follows English File pattern:
+# A. VOCABULARY & PRONUNCIATION (pictures → words)
+# B. GRAMMAR (context → rule)
+# C. PRACTICE (interactive exercises)
+# D. SPEAKING (real communication)
+
 LESSONS = [
+    # ===== LEVEL 1: BEGINNER ===== (English File Book 1)
     {
         "id": "l1-01",
         "level_id": 1,
+        "module": 1,
         "title": "Hello!",
-        "content": """
-# Hello!
-
-## Greetings
-
-- **Hello!** - Привет!
-- **Hi!** - Привет! (неформально)
-- **Good morning!** - Доброе утро!
-- **Good afternoon!** - Добрый день!
-- **Good evening!** - Добрый вечер!
-- **Goodbye!** - До свидания!
-- **See you!** - Увидимся!
-
-## How are you?
-
-- **How are you?** - Как дела?
-- **I'm fine, thanks.** - Хорошо, спасибо.
-- **Not bad.** - Неплохо.
-- **And you?** - А у тебя?
-
-## Practice
-
-Try to greet someone in English!
-        """,
-        "audio_url": None,
+        "topic": "Greetings & Introductions",
+        # A. VOCABULARY - learn through pictures (no translation!)
+        "vocabulary": [
+            {"word": "hello", "picture": "wave_hand.png", "sound": "hello.mp3"},
+            {"word": "goodbye", "picture": "wave_hand.png", "sound": "goodbye.mp3"},
+            {"word": "please", "picture": "please.png", "sound": "please.mp3"},
+            {"word": "thank you", "picture": "smile.png", "sound": "thankyou.mp3"},
+        ],
+        # B. GRAMMAR - shown in context
+        "grammar": {
+            "title": "Hello! I'm...",
+            "pattern": "Hello! I'm [name]. What's your name?",
+            "examples": ["Hello! I'm Anna.", "Hello! I'm Tom."],
+        },
+        # C. EXERCISES
         "exercises": [
-            {
-                "type": "vocabulary",
-                "question": "How do you say 'Привет' in English?",
-                "answer": "Hello",
-                "options": ["Hello", "Goodbye", "Thanks", "Please"]
-            },
-            {
-                "type": "grammar",
-                "question": "Complete: How are ___?",
-                "answer": "you",
-                "options": ["you", "I", "he", "she"]
-            }
-        ]
+            {"type": "listen", "instruction": "Listen and repeat"},
+            {"type": "match", "instruction": "Match pictures to words"},
+            {"type": "speak", "instruction": "Say Hello! I'm [your name]"},
+        ],
+        # D. SPEAKING
+        "speaking": {
+            "task": "Introduce yourself to the class",
+            "phrases": ["Hello! I'm...", "What's your name?"],
+        }
     },
     {
         "id": "l1-02",
         "level_id": 1,
+        "module": 2,
         "title": "Numbers 1-20",
-        "content": """
-# Numbers 1-20
-
-## Numbers
-
-| Number | Word |
-|--------|------|
-| 1 | one |
-| 2 | two |
-| 3 | three |
-| 4 | four |
-| 5 | five |
-| 6 | six |
-| 7 | seven |
-| 8 | eight |
-| 9 | nine |
-| 10 | ten |
-| 11 | eleven |
-| 12 | twelve |
-| 13 | thirteen |
-| 14 | fourteen |
-| 15 | fifteen |
-| 16 | sixteen |
-| 17 | seventeen |
-| 18 | eighteen |
-| 19 | nineteen |
-| 20 | twenty |
-
-## Practice
-
-Count from 1 to 20!
-        """,
+        "topic": "Counting",
+        "vocabulary": [
+            {"word": "one", "number": 1},
+            {"word": "two", "number": 2},
+            {"word": "three", "number": 3},
+            {"word": "four", "number": 4},
+            {"word": "five", "number": 5},
+            {"word": "six", "number": 6},
+            {"word": "seven", "number": 7},
+            {"word": "eight", "number": 8},
+            {"word": "nine", "number": 9},
+            {"word": "ten", "number": 10},
+        ],
+        "grammar": {
+            "title": "How many?",
+            "pattern": "How many? — [Number]",
+            "examples": ["How many? One!", "Two, three, four!"],
+        },
         "exercises": [
-            {
-                "type": "vocabulary",
-                "question": "What number is 'five'?",
-                "answer": "5",
-                "options": ["5", "6", "4", "7"]
-            }
-        ]
-    }
+            {"type": "listen", "instruction": "Listen and say the numbers"},
+            {"type": "order", "instruction": "Put numbers in order"},
+            {"type": "speak", "instruction": "Count from 1 to 10"},
+        ],
+    },
+    {
+        "id": "l1-03",
+        "level_id": 1,
+        "module": 3,
+        "title": "Family",
+        "topic": "People",
+        "vocabulary": [
+            {"word": "mother", "picture": "family_mother.png", "family": "female"},
+            {"word": "father", "picture": "family_father.png", "family": "male"},
+            {"word": "sister", "picture": "family_sister.png", "family": "female"},
+            {"word": "brother", "picture": "family_brother.png", "family": "male"},
+        ],
+        "grammar": {
+            "title": "This is my...",
+            "pattern": "This is my [family word].",
+            "examples": ["This is my mother.", "This is my brother."],
+        },
+        "exercises": [
+            {"type": "listen", "instruction": "Listen and repeat"},
+            {"type": "match", "instruction": "Match family words to pictures"},
+            {"type": "speak", "instruction": "Say: This is my..."},
+        ],
+    },
 ]
 
-# In-memory storage
-users_db = {}
-progress_db = {}
+# ==================== MODELS ====================
+
+class User(BaseModel):
+    id: str = None
+    email: str
+    name: str
+    current_level: int = 1
+    current_module: int = 1
+
+class ExerciseAnswer(BaseModel):
+    lesson_id: str
+    exercise_index: int
+    answer: str
 
 # ==================== ROUTES ====================
 
 @app.get("/")
 def root():
-    return {"message": "English File API", "version": "1.0.0", "status": "running"}
+    return {
+        "message": "English File API", 
+        "version": "1.0.0",
+        "method": "Learn English through English!"
+    }
 
 @app.get("/levels")
 def get_levels():
-    """Get all levels"""
+    """Get all 4 English File levels"""
     return LEVELS
 
 @app.get("/levels/{level_id}")
 def get_level(level_id: int):
-    """Get specific level"""
     for level in LEVELS:
         if level["id"] == level_id:
             return level
@@ -173,62 +184,52 @@ def get_level(level_id: int):
 
 @app.get("/levels/{level_id}/lessons")
 def get_lessons(level_id: int):
-    """Get lessons for a level"""
+    """Get all lessons for a level"""
     return [l for l in LESSONS if l["level_id"] == level_id]
 
 @app.get("/lessons/{lesson_id}")
 def get_lesson(lesson_id: str):
-    """Get specific lesson"""
+    """Get specific lesson with all components"""
     for lesson in LESSONS:
         if lesson["id"] == lesson_id:
             return lesson
     raise HTTPException(status_code=404, detail="Lesson not found")
 
-@app.post("/users")
-def create_user(user: User):
-    """Create new user"""
-    user.id = str(uuid.uuid4())
-    user.created_at = datetime.now()
-    users_db[user.id] = user
-    return {"user_id": user.id, "message": "User created"}
+@app.get("/lessons/{lesson_id}/vocabulary")
+def get_vocabulary(lesson_id: str):
+    """Get vocabulary for a lesson (pictures + words)"""
+    for lesson in LESSONS:
+        if lesson["id"] == lesson_id:
+            return lesson.get("vocabulary", [])
+    raise HTTPException(status_code=404, detail="Lesson not found")
 
-@app.get("/users/{user_id}/progress")
-def get_progress(user_id: str):
-    """Get user progress"""
-    user_progress = [p for p in progress_db.values() if p["user_id"] == user_id]
-    return user_progress
-
-@app.post("/progress")
-def save_progress(progress: UserProgress):
-    """Save exercise progress"""
-    key = f"{progress.user_id}-{progress.lesson_id}"
-    progress_db[key] = progress.dict()
-    return {"message": "Progress saved", "score": progress.score}
+@app.get("/lessons/{lesson_id}/exercises")
+def get_exercises(lesson_id: str):
+    """Get exercises for practice"""
+    for lesson in LESSONS:
+        if lesson["id"] == lesson_id:
+            return lesson.get("exercises", [])
+    raise HTTPException(status_code=404, detail="Lesson not found")
 
 # ==================== AI TUTOR ====================
 
 @app.post("/ai/chat")
-def chat_with_ai(message: str, user_id: str = "demo"):
+def chat_with_tutor(message: str, user_id: str = "demo"):
     """
-    Chat with AI tutor
-    Note: This would connect to Groq/OpenAI in production
+    AI Tutor responds in English only!
+    Following English File methodology - no translation
     """
-    # For demo, return a simple response
-    responses = [
-        "Great question! Let's practice more.",
-        "Very good! Keep going!",
-        "Excellent work! You're making progress.",
-        "That's correct! Well done!",
-    ]
-    import random
+    # In production, connect to Groq/OpenAI
+    # Always respond in simple English
     return {
-        "response": random.choice(responses),
-        "user_id": user_id
+        "response": "Great! Try to speak in English. Practice makes perfect!",
+        "user_id": user_id,
+        "tip": "Don't worry about mistakes. Just speak!"
     }
 
 # ==================== RUN ====================
 
 if __name__ == "__main__":
     import uvicorn
-    print("🚀 English File API Server")
+    print("📚 English File API - Learn English through English!")
     print("Run: uvicorn main:app --host 0.0.0.0 --port 8000")
