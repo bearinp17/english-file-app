@@ -4,204 +4,755 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>English File - Learn English through English</title>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
     <style>
+        :root {
+            --primary: #6366f1;
+            --primary-dark: #4f46e5;
+            --secondary: #ec4899;
+            --success: #10b981;
+            --warning: #f59e0b;
+            --bg: #0f172a;
+            --card-bg: #1e293b;
+            --text: #f8fafc;
+            --text-muted: #94a3b8;
+        }
+        
         * { margin: 0; padding: 0; box-sizing: border-box; }
-        body { font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif; background: #f5f5f5; }
+        
+        body {
+            font-family: 'Inter', sans-serif;
+            background: var(--bg);
+            color: var(--text);
+            min-height: 100vh;
+            overflow-x: hidden;
+        }
+        
+        /* Animated Background */
+        .bg-gradient {
+            position: fixed;
+            top: 0; left: 0; right: 0; bottom: 0;
+            background: 
+                radial-gradient(ellipse at 20% 20%, rgba(99, 102, 241, 0.15) 0%, transparent 50%),
+                radial-gradient(ellipse at 80% 80%, rgba(236, 72, 153, 0.1) 0%, transparent 50%),
+                radial-gradient(ellipse at 50% 50%, rgba(16, 185, 129, 0.05) 0%, transparent 50%);
+            z-index: -1;
+        }
         
         /* Header */
-        header { background: linear-gradient(135deg, #667eea 0%, #764ba2 100%); color: white; padding: 40px 20px; text-align: center; }
-        header h1 { font-size: 2.5rem; margin-bottom: 10px; }
-        header p { font-size: 1.2rem; opacity: 0.9; }
+        header {
+            background: rgba(30, 41, 59, 0.8);
+            backdrop-filter: blur(20px);
+            border-bottom: 1px solid rgba(255,255,255,0.1);
+            padding: 20px 0;
+            position: sticky;
+            top: 0;
+            z-index: 100;
+        }
         
-        /* Container */
-        .container { max-width: 800px; margin: 0 auto; padding: 20px; }
+        .header-content {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 24px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
         
-        /* Levels */
-        .levels-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 20px; margin-top: 20px; }
+        .logo {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+        }
+        
+        .logo-icon {
+            width: 48px;
+            height: 48px;
+            background: linear-gradient(135deg, var(--primary), var(--secondary));
+            border-radius: 12px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 24px;
+            animation: pulse 2s ease-in-out infinite;
+        }
+        
+        @keyframes pulse {
+            0%, 100% { transform: scale(1); }
+            50% { transform: scale(1.05); }
+        }
+        
+        .logo-text {
+            font-size: 1.5rem;
+            font-weight: 800;
+            background: linear-gradient(135deg, #fff, #cbd5e1);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+        
+        .nav-links {
+            display: flex;
+            gap: 24px;
+        }
+        
+        .nav-link {
+            color: var(--text-muted);
+            text-decoration: none;
+            font-weight: 500;
+            transition: color 0.3s;
+        }
+        
+        .nav-link:hover { color: var(--text); }
+        
+        /* Hero Section */
+        .hero {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 80px 24px;
+            text-align: center;
+        }
+        
+        .hero-badge {
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            background: rgba(99, 102, 241, 0.2);
+            border: 1px solid rgba(99, 102, 241, 0.3);
+            padding: 8px 16px;
+            border-radius: 50px;
+            font-size: 0.875rem;
+            color: #a5b4fc;
+            margin-bottom: 24px;
+        }
+        
+        .hero h1 {
+            font-size: 4rem;
+            font-weight: 800;
+            line-height: 1.1;
+            margin-bottom: 24px;
+        }
+        
+        .hero h1 span {
+            background: linear-gradient(135deg, var(--primary), var(--secondary));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+        
+        .hero p {
+            font-size: 1.25rem;
+            color: var(--text-muted);
+            max-width: 600px;
+            margin: 0 auto 40px;
+        }
+        
+        .hero-buttons {
+            display: flex;
+            gap: 16px;
+            justify-content: center;
+        }
+        
+        .btn {
+            padding: 16px 32px;
+            border-radius: 12px;
+            font-weight: 600;
+            font-size: 1rem;
+            cursor: pointer;
+            transition: all 0.3s;
+            border: none;
+            text-decoration: none;
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+        }
+        
+        .btn-primary {
+            background: linear-gradient(135deg, var(--primary), var(--primary-dark));
+            color: white;
+            box-shadow: 0 4px 20px rgba(99, 102, 241, 0.4);
+        }
+        
+        .btn-primary:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 8px 30px rgba(99, 102, 241, 0.5);
+        }
+        
+        .btn-secondary {
+            background: rgba(255,255,255,0.1);
+            color: white;
+            border: 1px solid rgba(255,255,255,0.2);
+        }
+        
+        .btn-secondary:hover {
+            background: rgba(255,255,255,0.15);
+        }
+        
+        /* Levels Grid */
+        .container { max-width: 1200px; margin: 0 auto; padding: 0 24px; }
+        
+        .section-title {
+            font-size: 2rem;
+            font-weight: 700;
+            margin-bottom: 32px;
+        }
+        
+        .levels-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 24px;
+            padding-bottom: 80px;
+        }
         
         .level-card {
-            background: white; border-radius: 16px; padding: 24px;
-            box-shadow: 0 4px 6px rgba(0,0,0,0.1); cursor: pointer;
-            transition: transform 0.2s, box-shadow 0.2s;
-            border-left: 4px solid #667eea;
-        }
-        .level-card:hover { transform: translateY(-4px); box-shadow: 0 8px 12px rgba(0,0,0,0.15); }
-        .level-card.book-1 { border-color: #4CAF50; }
-        .level-card.book-2 { border-color: #2196F3; }
-        .level-card.book-3 { border-color: #9C27B0; }
-        .level-card.book-4 { border-color: #FF5722; }
-        
-        .level-number { font-size: 0.9rem; color: #888; }
-        .level-title { font-size: 1.5rem; font-weight: bold; margin: 8px 0; }
-        .level-cefr { font-size: 1.1rem; color: #667eea; font-weight: 600; }
-        .level-desc { font-size: 0.9rem; color: #666; margin-top: 8px; }
-        
-        /* Lessons */
-        .lessons-section { display: none; }
-        .lessons-section.active { display: block; }
-        
-        .back-btn {
-            display: inline-block; background: #667eea; color: white;
-            padding: 10px 20px; border-radius: 8px; text-decoration: none;
-            margin-bottom: 20px; cursor: pointer;
+            background: var(--card-bg);
+            border-radius: 20px;
+            padding: 32px;
+            cursor: pointer;
+            transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+            border: 1px solid rgba(255,255,255,0.1);
+            position: relative;
+            overflow: hidden;
         }
         
-        .lesson-card {
-            background: white; border-radius: 12px; padding: 20px;
-            margin-bottom: 16px; cursor: pointer;
-            box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+        .level-card::before {
+            content: '';
+            position: absolute;
+            top: 0; left: 0; right: 0;
+            height: 4px;
+            background: var(--card-color);
         }
-        .lesson-card:hover { box-shadow: 0 4px 8px rgba(0,0,0,0.15); }
-        .lesson-module { font-size: 0.8rem; color: #888; background: #f0f0f0; padding: 4px 8px; border-radius: 4px; display: inline-block; }
-        .lesson-title { font-size: 1.3rem; font-weight: bold; margin: 8px 0; }
-        .lesson-topic { font-size: 0.9rem; color: #667eea; }
         
-        /* Lesson Detail */
-        .lesson-detail { display: none; }
-        .lesson-detail.active { display: block; }
+        .level-card:hover {
+            transform: translateY(-8px);
+            box-shadow: 0 20px 40px rgba(0,0,0,0.3);
+            border-color: var(--card-color);
+        }
         
-        .section { background: white; border-radius: 12px; padding: 20px; margin-bottom: 20px; }
-        .section-title { font-size: 1.3rem; font-weight: bold; margin-bottom: 16px; display: flex; align-items: center; gap: 8px; }
+        .level-card.book-1 { --card-color: #10b981; }
+        .level-card.book-2 { --card-color: #3b82f6; }
+        .level-card.book-3 { --card-color: #8b5cf6; }
+        .level-card.book-4 { --card-color: #f59e0b; }
         
-        /* Vocabulary */
-        .vocab-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(120px, 1fr)); gap: 12px; }
-        .vocab-card { text-align: center; padding: 16px; background: #f8f9fa; border-radius: 8px; }
-        .vocab-emoji { font-size: 2rem; }
-        .vocab-word { font-weight: 600; margin-top: 8px; }
+        .level-number {
+            font-size: 0.875rem;
+            color: var(--text-muted);
+            margin-bottom: 8px;
+        }
         
-        /* Grammar */
-        .grammar-box { background: #e3f2fd; padding: 16px; border-radius: 8px; }
-        .grammar-pattern { font-size: 1.2rem; font-weight: bold; color: #1565c0; margin-bottom: 12px; }
-        .grammar-example { font-size: 1rem; color: #333; margin: 6px 0; }
+        .level-title {
+            font-size: 1.75rem;
+            font-weight: 700;
+            margin-bottom: 8px;
+        }
         
-        /* AI Tutor */
-        .ai-tutor { background: #fff3e0; padding: 20px; border-radius: 12px; text-align: center; }
-        .ai-btn { background: #667eea; color: white; border: none; padding: 14px 28px; font-size: 1rem; border-radius: 8px; cursor: pointer; margin-top: 12px; }
-        .ai-btn:hover { background: #5568d3; }
+        .level-cefr {
+            display: inline-block;
+            background: rgba(255,255,255,0.1);
+            padding: 4px 12px;
+            border-radius: 20px;
+            font-size: 0.875rem;
+            font-weight: 600;
+            color: var(--card-color);
+            margin-bottom: 16px;
+        }
         
-        /* Footer */
-        footer { text-align: center; padding: 40px; color: #888; }
+        .level-desc {
+            color: var(--text-muted);
+            line-height: 1.6;
+        }
+        
+        .level-modules {
+            margin-top: 20px;
+            padding-top: 20px;
+            border-top: 1px solid rgba(255,255,255,0.1);
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+        
+        .level-modules span {
+            color: var(--text-muted);
+            font-size: 0.875rem;
+        }
+        
+        .level-arrow {
+            width: 32px;
+            height: 32px;
+            background: var(--card-color);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            opacity: 0;
+            transform: translateX(-10px);
+            transition: all 0.3s;
+        }
+        
+        .level-card:hover .level-arrow {
+            opacity: 1;
+            transform: translateX(0);
+        }
+        
+        /* Audio Player */
+        .audio-player {
+            position: fixed;
+            bottom: 24px;
+            right: 24px;
+            background: var(--card-bg);
+            border: 1px solid rgba(255,255,255,0.1);
+            border-radius: 16px;
+            padding: 16px 24px;
+            display: none;
+            align-items: center;
+            gap: 16px;
+            box-shadow: 0 20px 40px rgba(0,0,0,0.4);
+            z-index: 1000;
+            animation: slideUp 0.3s ease-out;
+        }
+        
+        @keyframes slideUp {
+            from { opacity: 0; transform: translateY(20px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+        
+        .audio-player.active { display: flex; }
+        
+        .audio-icon {
+            width: 40px;
+            height: 40px;
+            background: linear-gradient(135deg, var(--primary), var(--secondary));
+            border-radius: 10px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 18px;
+        }
+        
+        .audio-info { flex: 1; }
+        
+        .audio-title { font-weight: 600; font-size: 0.9rem; }
+        
+        .audio-subtitle { font-size: 0.75rem; color: var(--text-muted); }
+        
+        .audio-controls button {
+            background: none;
+            border: none;
+            color: white;
+            cursor: pointer;
+            font-size: 1.25rem;
+            padding: 8px;
+            transition: transform 0.2s;
+        }
+        
+        .audio-controls button:hover { transform: scale(1.2); }
+        
+        /* Modal */
+        .modal {
+            display: none;
+            position: fixed;
+            top: 0; left: 0; right: 0; bottom: 0;
+            background: rgba(0,0,0,0.8);
+            z-index: 200;
+            align-items: center;
+            justify-content: center;
+            padding: 24px;
+        }
+        
+        .modal.active { display: flex; }
+        
+        .modal-content {
+            background: var(--card-bg);
+            border-radius: 24px;
+            max-width: 600px;
+            width: 100%;
+            max-height: 90vh;
+            overflow-y: auto;
+            animation: modalIn 0.3s ease-out;
+        }
+        
+        @keyframes modalIn {
+            from { opacity: 0; transform: scale(0.9); }
+            to { opacity: 1; transform: scale(1); }
+        }
+        
+        .modal-header {
+            padding: 24px;
+            border-bottom: 1px solid rgba(255,255,255,0.1);
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+        
+        .modal-close {
+            background: rgba(255,255,255,0.1);
+            border: none;
+            color: white;
+            width: 36px;
+            height: 36px;
+            border-radius: 50%;
+            cursor: pointer;
+            font-size: 1.25rem;
+        }
+        
+        .modal-body { padding: 24px; }
+        
+        /* Lesson Sections */
+        .lesson-section {
+            background: rgba(255,255,255,0.05);
+            border-radius: 16px;
+            padding: 24px;
+            margin-bottom: 24px;
+        }
+        
+        .lesson-section h3 {
+            font-size: 1.25rem;
+            margin-bottom: 16px;
+            display: flex;
+            align-items: center;
+            gap: 12px;
+        }
+        
+        .vocab-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(140px, 1fr));
+            gap: 12px;
+        }
+        
+        .vocab-card {
+            background: rgba(255,255,255,0.05);
+            border-radius: 12px;
+            padding: 20px;
+            text-align: center;
+            cursor: pointer;
+            transition: all 0.3s;
+        }
+        
+        .vocab-card:hover {
+            background: rgba(99, 102, 241, 0.2);
+            transform: scale(1.05);
+        }
+        
+        .vocab-emoji {
+            font-size: 2.5rem;
+            margin-bottom: 8px;
+        }
+        
+        .vocab-word {
+            font-weight: 600;
+            font-size: 1rem;
+        }
+        
+        .vocab-audio {
+            margin-top: 8px;
+            background: rgba(99, 102, 241, 0.3);
+            border: none;
+            color: #a5b4fc;
+            padding: 4px 12px;
+            border-radius: 20px;
+            cursor: pointer;
+            font-size: 0.75rem;
+        }
+        
+        .grammar-box {
+            background: linear-gradient(135deg, rgba(99, 102, 241, 0.2), rgba(236, 72, 153, 0.1));
+            border-radius: 12px;
+            padding: 20px;
+        }
+        
+        .grammar-pattern {
+            font-size: 1.25rem;
+            font-weight: 700;
+            color: #a5b4fc;
+            margin-bottom: 16px;
+        }
+        
+        .grammar-example {
+            color: var(--text-muted);
+            margin: 8px 0;
+            padding-left: 16px;
+            border-left: 2px solid var(--primary);
+        }
+        
+        /* AI Chat */
+        .ai-chat {
+            background: rgba(0,0,0,0.3);
+            border-radius: 16px;
+            padding: 20px;
+            margin-top: 16px;
+        }
+        
+        .chat-messages {
+            max-height: 200px;
+            overflow-y: auto;
+            margin-bottom: 16px;
+        }
+        
+        .chat-message {
+            padding: 12px 16px;
+            border-radius: 12px;
+            margin-bottom: 8px;
+            max-width: 80%;
+        }
+        
+        .chat-message.ai {
+            background: rgba(99, 102, 241, 0.2);
+            align-self: flex-start;
+        }
+        
+        .chat-message.user {
+            background: var(--primary);
+            margin-left: auto;
+        }
+        
+        .chat-input {
+            display: flex;
+            gap: 8px;
+        }
+        
+        .chat-input input {
+            flex: 1;
+            background: rgba(255,255,255,0.1);
+            border: 1px solid rgba(255,255,255,0.2);
+            border-radius: 12px;
+            padding: 12px 16px;
+            color: white;
+            font-size: 1rem;
+        }
+        
+        .chat-input input:focus {
+            outline: none;
+            border-color: var(--primary);
+        }
+        
+        .chat-input button {
+            background: var(--primary);
+            border: none;
+            color: white;
+            padding: 12px 20px;
+            border-radius: 12px;
+            cursor: pointer;
+            font-weight: 600;
+        }
+        
+        /* Responsive */
+        @media (max-width: 768px) {
+            .hero h1 { font-size: 2.5rem; }
+            .nav-links { display: none; }
+            .hero-buttons { flex-direction: column; }
+            .levels-grid { grid-template-columns: 1fr; }
+        }
     </style>
 </head>
 <body>
+    <div class="bg-gradient"></div>
+    
+    <!-- Header -->
     <header>
-        <h1>📚 English File</h1>
-        <p>Learn English through English - NO TRANSLATION!</p>
+        <div class="header-content">
+            <div class="logo">
+                <div class="logo-icon">📚</div>
+                <span class="logo-text">English File</span>
+            </div>
+            <nav class="nav-links">
+                <a href="#" class="nav-link">Home</a>
+                <a href="#" class="nav-link">Levels</a>
+                <a href="#" class="nav-link">About</a>
+            </nav>
+        </div>
     </header>
     
-    <div class="container">
-        <!-- Levels Grid -->
-        <div id="levels" class="levels-grid">
-            <div class="level-card book-1" onclick="showLessons(1)">
+    <!-- Hero -->
+    <section class="hero">
+        <div class="hero-badge">
+            🎯 Learn English through English
+        </div>
+        <h1>Master English<br><span>Without Translation</span></h1>
+        <p>Follow the proven English File methodology. Pictures, context, and speaking practice - no Russian needed!</p>
+        <div class="hero-buttons">
+            <button class="btn btn-primary" onclick="scrollToLevels()">
+                🚀 Start Learning
+            </button>
+            <button class="btn btn-secondary">
+                📖 View Curriculum
+            </button>
+        </div>
+    </section>
+    
+    <!-- Levels -->
+    <section class="container">
+        <h2 class="section-title">Choose Your Level</h2>
+        <div class="levels-grid">
+            <div class="level-card book-1" onclick="openLevel(1)">
                 <div class="level-number">Book 1</div>
                 <div class="level-title">Beginner</div>
                 <div class="level-cefr">CEFR A1</div>
-                <div class="level-desc">Start with pictures and simple sentences</div>
+                <p class="level-desc">Start with pictures and simple sentences. Learn greetings, numbers, family, and basic vocabulary.</p>
+                <div class="level-modules">
+                    <span>12 Modules • 48 Lessons</span>
+                    <div class="level-arrow">→</div>
+                </div>
             </div>
-            <div class="level-card book-2" onclick="showLessons(2)">
+            
+            <div class="level-card book-2" onclick="openLevel(2)">
                 <div class="level-number">Book 2</div>
                 <div class="level-title">Pre-Intermediate</div>
                 <div class="level-cefr">CEFR A2-B1</div>
-                <div class="level-desc">Build confidence in everyday situations</div>
+                <p class="level-desc">Build confidence in everyday situations. Past tenses, comparisons, and fluently talking about routines.</p>
+                <div class="level-modules">
+                    <span>12 Modules • 48 Lessons</span>
+                    <div class="level-arrow">→</div>
+                </div>
             </div>
-            <div class="level-card book-3" onclick="showLessons(3)">
+            
+            <div class="level-card book-3" onclick="openLevel(3)">
                 <div class="level-number">Book 3</div>
                 <div class="level-title">Intermediate</div>
                 <div class="level-cefr">CEFR B1</div>
-                <div class="level-desc">Communicate with fluency</div>
+                <p class="level-desc">Communicate with fluency. Express opinions, narrate stories, and discuss abstract topics.</p>
+                <div class="level-modules">
+                    <span>12 Modules • 48 Lessons</span>
+                    <div class="level-arrow">→</div>
+                </div>
             </div>
-            <div class="level-card book-4" onclick="showLessons(4)">
+            
+            <div class="level-card book-4" onclick="openLevel(4)">
                 <div class="level-number">Book 4</div>
                 <div class="level-title">Advanced</div>
                 <div class="level-cefr">CEFR B2-C1</div>
-                <div class="level-desc">Master complex English</div>
+                <p class="level-desc">Master complex English. Nuances, idioms, and native-level fluency in speaking and writing.</p>
+                <div class="level-modules">
+                    <span>12 Modules • 48 Lessons</span>
+                    <div class="level-arrow">→</div>
+                </div>
             </div>
         </div>
-        
-        <!-- Lessons Section -->
-        <div id="lessons" class="lessons-section">
-            <span class="back-btn" onclick="showLevels()">← Back to Levels</span>
-            <h2 id="lessons-title">Level 1 - Beginner</h2>
-            <div id="lessons-list"></div>
+    </section>
+    
+    <!-- Audio Player -->
+    <div class="audio-player" id="audioPlayer">
+        <div class="audio-icon">🔊</div>
+        <div class="audio-info">
+            <div class="audio-title" id="audioTitle">Vocabulary</div>
+            <div class="audio-subtitle" id="audioSubtitle">Press play to listen</div>
         </div>
-        
-        <!-- Lesson Detail -->
-        <div id="lesson-detail" class="lesson-detail">
-            <span class="back-btn" onclick="showLessons(currentLevel)">← Back to Lessons</span>
-            <div id="lesson-content"></div>
+        <div class="audio-controls">
+            <button onclick="toggleAudio()">▶</button>
         </div>
     </div>
     
-    <footer>
-        <p>📚 English File App - Learn English through English!</p>
-    </footer>
+    <!-- Lesson Modal -->
+    <div class="modal" id="lessonModal">
+        <div class="modal-content">
+            <div class="modal-header">
+                <div>
+                    <h2 id="modalTitle">Hello!</h2>
+                    <p id="modalTopic" style="color: var(--text-muted);">Greetings</p>
+                </div>
+                <button class="modal-close" onclick="closeModal()">×</button>
+            </div>
+            <div class="modal-body" id="modalBody">
+                <!-- Dynamic Content -->
+            </div>
+        </div>
+    </div>
     
     <script>
-        const API = 'http://localhost:8000';
-        let currentLevel = 1;
+        // Lesson Data
+        const lessonsData = {
+            1: [
+                { id: '1-01', module: 1, title: 'Hello!', topic: 'Greetings',
+                  vocabulary: [
+                      { word: 'hello', emoji: '👋' },
+                      { word: 'goodbye', emoji: '👋' },
+                      { word: 'please', emoji: '🙏' },
+                      { word: 'thank you', emoji: '😊' },
+                      { word: 'sorry', emoji: '😔' }
+                  ],
+                  grammar: { pattern: "Hello! I'm [name].", examples: ["Hello! I'm Anna.", "Hi! I'm Tom."] }
+                },
+                { id: '1-02', module: 2, title: 'Numbers', topic: 'Counting',
+                  vocabulary: [
+                      { word: 'one', emoji: '1️⃣' },
+                      { word: 'two', emoji: '2️⃣' },
+                      { word: 'three', emoji: '3️⃣' },
+                      { word: 'four', emoji: '4️⃣' },
+                      { word: 'five', emoji: '5️⃣' }
+                  ],
+                  grammar: { pattern: "How many?", examples: ["One, two, three!", "Count with me!"] }
+                },
+                { id: '1-03', module: 3, title: 'Family', topic: 'People',
+                  vocabulary: [
+                      { word: 'mother', emoji: '👩' },
+                      { word: 'father', emoji: '👨' },
+                      { word: 'sister', emoji: '👩‍🦰' },
+                      { word: 'brother', emoji: '👨‍🦱' },
+                      { word: 'baby', emoji: '👶' }
+                  ],
+                  grammar: { pattern: "This is my [family].", examples: ["This is my mother.", "This is my brother."] }
+                },
+                { id: '1-04', module: 4, title: 'Jobs', topic: 'Work',
+                  vocabulary: [
+                      { word: 'doctor', emoji: '👨‍⚕️' },
+                      { word: 'teacher', emoji: '👩‍🏫' },
+                      { word: 'driver', emoji: '🚗' },
+                      { word: 'chef', emoji: '👨‍🍳' }
+                  ],
+                  grammar: { pattern: "What do you do?", examples: ["I'm a teacher.", "I'm a doctor."] }
+                }
+            ]
+        };
         
-        // Mock data for demo (when API not running)
-        const levels = [
-            {id:1, book:'English File Elementary', title:'Beginner', cefr:'A1'},
-            {id:2, book:'English File Elementary', title:'Pre-Intermediate', cefr:'A2-B1'},
-            {id:3, book:'English File Intermediate', title:'Intermediate', cefr:'B1'},
-            {id:4, book:'English File Upper-Intermediate', title:'Advanced', cefr:'B2-C1'},
-        ];
-        
-        const lessons = [
-            {id:'1-01', level_id:1, module:1, title:'Hello!', topic:'Greetings', vocabulary:[{word:'hello',emoji:'👋'},{word:'goodbye',emoji:'👋'},{word:'please',emoji:'🙏'},{word:'thank you',emoji:'😊'}], grammar:{pattern:'Hello! I\'m [name].', examples:['Hello! I\'m Anna.','Hi! I\'m Tom.']}},
-            {id:'1-02', level_id:1, module:2, title:'Numbers', topic:'Counting', vocabulary:[{word:'one',emoji:'1'},{word:'two',emoji:'2'},{word:'three',emoji:'3'}], grammar:{pattern:'How many?', examples:['One, two, three!']}},
-            {id:'1-03', level_id:1, module:3, title:'Family', topic:'People', vocabulary:[{word:'mother',emoji:'👩'},{word:'father',emoji:'👨'},{word:'sister',emoji:'👩'},{word:'brother',emoji:'👨'}], grammar:{pattern:'This is my [family].', examples:['This is my mother.','This is my brother.']}},
-            {id:'1-04', level_id:1, module:4, title:'Jobs', topic:'Work', vocabulary:[{word:'doctor',emoji:'👨‍⚕️'},{word:'teacher',emoji:'👩‍🏫'},{word:'driver',emoji:'🚗'}], grammar:{pattern:'What do you do?', examples:['I\'m a teacher.','I\'m a doctor.']}},
-            {id:'1-05', level_id:1, module:5, title:'Places', topic:'Locations', vocabulary:[{word:'school',emoji:'🏫'},{word:'hospital',emoji:'🏥'},{word:'hotel',emoji:'🏨'}], grammar:{pattern:'Where is the [place]?', examples:['Where is the hotel?']}},
-            {id:'1-06', level_id:1, module:6, title:'Time', topic:'Clock', vocabulary:[{word:'morning',emoji:'🌅'},{word:'afternoon',emoji:'☀️'},{word:'evening',emoji:'🌆'}], grammar:{pattern:'What time is it?', examples:["It's three o'clock."]}},
-        ];
-        
-        function showLevels() {
-            document.getElementById('levels').style.display = 'grid';
-            document.getElementById('lessons').classList.remove('active');
-            document.getElementById('lesson-detail').classList.remove('active');
+        function scrollToLevels() {
+            document.querySelector('.section-title').scrollIntoView({ behavior: 'smooth' });
         }
         
-        function showLessons(level) {
-            currentLevel = level;
-            document.getElementById('levels').style.display = 'none';
-            document.getElementById('lessons').classList.add('active');
-            document.getElementById('lesson-detail').classList.remove('active');
+        function openLevel(level) {
+            const lessons = lessonsData[level] || [];
+            const modal = document.getElementById('lessonModal');
+            const modalBody = document.getElementById('modalBody');
             
-            const levelData = levels.find(l => l.id === level);
-            document.getElementById('lessons-title').textContent = `${levelData.title} - ${levelData.cefr}`;
+            let html = `<div style="display: grid; gap: 12px;">`;
+            lessons.forEach(lesson => {
+                html += `
+                    <div class="lesson-card" onclick="showLesson(${level}, '${lesson.id}')" 
+                         style="background: rgba(255,255,255,0.05); padding: 20px; border-radius: 12px; cursor: pointer;">
+                        <span style="font-size: 0.8rem; color: var(--text-muted);">Module ${lesson.module}</span>
+                        <h3 style="margin: 8px 0;">${lesson.title}</h3>
+                        <p style="color: var(--text-muted); font-size: 0.9rem;">${lesson.topic}</p>
+                    </div>
+                `;
+            });
+            html += `</div>`;
             
-            const levelLessons = lessons.filter(l => l.level_id === level);
-            const list = document.getElementById('lessons-list');
-            list.innerHTML = levelLessons.map(l => `
-                <div class="lesson-card" onclick="showLesson('${l.id}')">
-                    <span class="lesson-module">Module ${l.module}</span>
-                    <div class="lesson-title">${l.title}</div>
-                    <div class="lesson-topic">${l.topic}</div>
-                </div>
-            `).join('');
+            modalBody.innerHTML = html;
+            document.getElementById('modalTitle').textContent = `Level ${level}`;
+            document.getElementById('modalTopic').textContent = level === 1 ? 'Beginner - A1' : level === 2 ? 'Pre-Intermediate - A2-B1' : '';
+            modal.classList.add('active');
         }
         
-        function showLesson(id) {
-            const lesson = lessons.find(l => l.id === id);
+        function showLesson(level, lessonId) {
+            const lessons = lessonsData[level];
+            const lesson = lessons.find(l => l.id === lessonId);
             if (!lesson) return;
             
-            document.getElementById('lessons').classList.remove('active');
-            document.getElementById('lesson-detail').classList.add('active');
+            const modalBody = document.getElementById('modalBody');
+            document.getElementById('modalTitle').textContent = lesson.title;
+            document.getElementById('modalTopic').textContent = lesson.topic;
             
-            const content = document.getElementById('lesson-content');
-            content.innerHTML = `
-                <h2>${lesson.title} - ${lesson.topic}</h2>
-                <br>
-                
+            // Audio synthesis
+            const speak = (text) => {
+                const utterance = new SpeechSynthesisUtterance(text);
+                utterance.rate = 0.8;
+                speechSynthesis.speak(utterance);
+            };
+            
+            let html = `
                 <!-- A. Vocabulary -->
-                <div class="section">
-                    <div class="section-title">📷 A. Vocabulary</div>
-                    <p style="color:#666;margin-bottom:16px;">Learn with pictures! No translation!</p>
+                <div class="lesson-section">
+                    <h3>📷 A. Vocabulary</h3>
+                    <p style="color: var(--text-muted); margin-bottom: 16px;">Tap to hear pronunciation!</p>
                     <div class="vocab-grid">
-                        ${(lesson.vocabulary || []).map(v => `
-                            <div class="vocab-card">
+                        ${lesson.vocabulary.map(v => `
+                            <div class="vocab-card" onclick="speak('${v.word}')">
                                 <div class="vocab-emoji">${v.emoji}</div>
                                 <div class="vocab-word">${v.word}</div>
                             </div>
@@ -210,37 +761,89 @@
                 </div>
                 
                 <!-- B. Grammar -->
-                <div class="section">
-                    <div class="section-title">📝 B. Grammar</div>
-                    <p style="color:#666;margin-bottom:16px;">Look at the pattern!</p>
+                <div class="lesson-section">
+                    <h3>📝 B. Grammar</h3>
                     <div class="grammar-box">
-                        <div class="grammar-pattern">${lesson.grammar?.pattern || 'Pattern'}</div>
-                        ${(lesson.grammar?.examples || []).map(ex => `
-                            <div class="grammar-example">• ${ex}</div>
+                        <div class="grammar-pattern">${lesson.grammar.pattern}</div>
+                        ${lesson.grammar.examples.map(ex => `
+                            <div class="grammar-example">${ex}</div>
                         `).join('')}
                     </div>
                 </div>
                 
                 <!-- C. Practice -->
-                <div class="section">
-                    <div class="section-title">✏️ C. Practice</div>
-                    <p>Listen, repeat, and practice!</p>
+                <div class="lesson-section">
+                    <h3>✏️ C. Practice</h3>
+                    <p>Listen and repeat. Practice makes perfect!</p>
                 </div>
                 
                 <!-- D. AI Tutor -->
-                <div class="section">
-                    <div class="section-title">🎤 D. Speaking Practice</div>
-                    <div class="ai-tutor">
-                        <p>Practice with AI Tutor!</p>
-                        <p style="color:#666;margin:10px 0;">Speak in English only - don't translate!</p>
-                        <button class="ai-btn" onclick="startAITutor('${lesson.topic}')">🎤 Start Practice</button>
+                <div class="lesson-section">
+                    <h3>🎤 D. Speaking Practice</h3>
+                    <div class="ai-chat">
+                        <div class="chat-messages" id="chatMessages">
+                            <div class="chat-message ai">Hi! Let's practice "${lesson.topic}"! Speak in English only!</div>
+                        </div>
+                        <div class="chat-input">
+                            <input type="text" id="chatInput" placeholder="Type in English..." onkeypress="handleChat(event)">
+                            <button onclick="sendChat()">Send</button>
+                        </div>
                     </div>
                 </div>
             `;
+            
+            modalBody.innerHTML = html;
+            
+            // Show audio player
+            document.getElementById('audioPlayer').classList.add('active');
+            document.getElementById('audioTitle').textContent = lesson.title;
+            document.getElementById('audioSubtitle').textContent = lesson.topic;
         }
         
-        function startAITutor(topic) {
-            alert('AI Tutor: Hi! Let\'s practice "' + topic + '"! Speak in English. Don\'t worry about mistakes!');
+        function closeModal() {
+            document.getElementById('lessonModal').classList.remove('active');
+        }
+        
+        function speak(text) {
+            const utterance = new SpeechSynthesisUtterance(text);
+            utterance.rate = 0.8;
+            speechSynthesis.speak(utterance);
+        }
+        
+        function toggleAudio() {
+            speak("Hello! I'm learning English!");
+        }
+        
+        function handleChat(e) {
+            if (e.key === 'Enter') sendChat();
+        }
+        
+        function sendChat() {
+            const input = document.getElementById('chatInput');
+            const messages = document.getElementById('chatMessages');
+            const text = input.value.trim();
+            if (!text) return;
+            
+            messages.innerHTML += `<div class="chat-message user">${text}</div>`;
+            input.value = '';
+            
+            // AI response
+            const responses = [
+                "Great! Try to say more.",
+                "Excellent! Keep going!",
+                "Very good! Practice every day!",
+                "Nice! Don't translate - think in English!",
+                "Well done! Speak more!"
+            ];
+            const response = responses[Math.floor(Math.random() * responses.length)];
+            
+            setTimeout(() => {
+                messages.innerHTML += `<div class="chat-message ai">${response}</div>`;
+                speak(response);
+                messages.scrollTop = messages.scrollHeight;
+            }, 500);
+            
+            messages.scrollTop = messages.scrollHeight;
         }
     </script>
 </body>
