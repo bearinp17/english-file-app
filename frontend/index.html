@@ -6,7 +6,7 @@
 <title>Eckersley - The English Language</title>
 <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
 <style>
-:root{--primary:#4F46E5;--secondary:#EC4899;--success:#10B981;--bg:#0F172A;--card:#1E293B;--text:#F8FAFC;--muted:#94A3B8;--border:rgba(255,255,255,0.1)}
+:root{--primary:#4F46E5;--secondary:#EC4899;--success:#10B981;--warning:#F59E0B;--bg:#0F172A;--card:#1E293B;--text:#F8FAFC;--muted:#94A3B8;--border:rgba(255,255,255,0.1)}
 *{margin:0;padding:0;box-sizing:border-box}
 body{font-family:Inter,sans-serif;background:var(--bg);color:var(--text);min-height:100vh}
 .bg{position:fixed;inset:0;background:linear-gradient(135deg,#0F172A,#1E1B4B,#0F172A);z-index:-1}
@@ -18,68 +18,85 @@ header{background:rgba(15,23,42,0.9);backdrop-filter:blur(20px);border-bottom:1p
 main{max-width:1200px;margin:0 auto;padding:50px 24px}
 h1{font-size:2.5rem;font-weight:800;margin-bottom:12px}
 .subtitle{color:var(--muted);font-size:1.1rem;margin-bottom:40px}
+.progress-bar{background:rgba(255,255,255,0.1);border-radius:10px;height:8px;margin-bottom:30px;overflow:hidden}
+.progress-fill{height:100%;background:linear-gradient(90deg,var(--primary),var(--secondary));width:0%;transition:width 0.5s}
 .parts{margin-bottom:40px}
-.part-title{font-size:1.4rem;font-weight:700;color:var(--primary);margin-bottom:16px;padding-bottom:8px;border-bottom:2px solid var(--primary)}
-.modules-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(300px,1fr));gap:16px;margin-bottom:30px}
-.module-card{background:rgba(255,255,255,0.05);border-radius:18px;padding:20px;cursor:pointer;transition:all 0.3s;border:2px solid transparent}
-.module-card:hover{background:rgba(79,70,229,0.15);border-color:var(--primary);transform:translateY(-4px)}
-.module-num{font-size:0.75rem;color:var(--muted);margin-bottom:6px}
-.module-title{font-weight:600;margin-bottom:4px;font-size:1.05rem}
-.module-topic{font-size:0.85rem;color:var(--secondary)}
-.modal{display:none;position:fixed;inset:0;background:rgba(0,0,0,0.9);z-index:200;overflow-y:auto;padding:20px}
+.part-title{font-size:1.4rem;font-weight:700;color:var(--primary);margin-bottom:16px;padding-bottom:8px;border-bottom:2px solid var(--primary);display:flex;align-items:center;gap:10px}
+.modules-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(280px,1fr));gap:14px;margin-bottom:30px}
+.module-card{background:rgba(255,255,255,0.05);border-radius:16px;padding:18px;cursor:pointer;transition:all 0.3s;border:2px solid transparent;position:relative}
+.module-card:hover{background:rgba(79,70,229,0.15);border-color:var(--primary);transform:translateY(-3px)}
+.module-card.completed{border-color:var(--success)}
+.module-card.completed::after{content:'✓';position:absolute;top:10px;right:10px;color:var(--success);font-weight:700;font-size:1.2rem}
+.module-num{font-size:0.7rem;color:var(--muted);margin-bottom:4px;text-transform:uppercase;letter-spacing:0.5px}
+.module-title{font-weight:600;margin-bottom:4px;font-size:1rem;line-height:1.3}
+.module-topic{font-size:0.8rem;color:var(--secondary)}
+.modal{display:none;position:fixed;inset:0;background:rgba(0,0,0,0.95);z-index:200;overflow-y:auto;padding:20px}
 .modal.active{display:block}
-.modal-content{background:linear-gradient(145deg,rgba(30,41,59,0.98),rgba(15,23,42,0.98));border-radius:28px;max-width:1000px;margin:0 auto;animation:slideUp 0.35s}
-@keyframes slideUp{from{opacity:0;transform:translateY(25px)}to{opacity:1;transform:translateY(0)}}
-.modal-header{padding:24px;border-bottom:1px solid var(--border);display:flex;justify-content:space-between;align-items:center;position:sticky;top:0;background:rgba(30,41,59,0.98);z-index:10;border-radius:28px 28px 0 0}
-.modal-close{background:rgba(255,255,255,0.1);border:none;color:#fff;width:40px;height:40px;border-radius:50%;cursor:pointer;font-size:1.3rem}
-.modal-body{padding:24px}
-.content-section{background:rgba(255,255,255,0.03);border-radius:18px;padding:20px;margin-bottom:20px}
-.section-title{font-size:1.2rem;font-weight:700;margin-bottom:16px;color:var(--primary)}
-.vocab-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(140px,1fr));gap:14px}
-.vocab-item{background:rgba(255,255,255,0.06);border-radius:16px;padding:16px;text-align:center;cursor:pointer;transition:all 0.3s}
-.vocab-item:hover{background:rgba(79,70,229,0.18);transform:translateY(-3px)}
-.vocab-emoji{font-size:2.5rem;margin-bottom:8px}
-.vocab-word{font-weight:600;font-size:0.95rem;margin-bottom:4px}
-.grammar-box{background:rgba(79,70,229,0.12);border-radius:20px;padding:24px;margin-bottom:20px}
-.grammar-pattern{font-size:1.3rem;font-weight:700;text-align:center;padding:18px;background:rgba(0,0,0,0.25);border-radius:14px;margin-bottom:16px}
-.grammar-examples{display:flex;flex-direction:column;gap:10px}
-.grammar-example{padding:14px;background:rgba(255,255,255,0.05);border-radius:12px}
-.exercise{background:rgba(255,255,255,0.03);border-radius:18px;padding:20px;margin-bottom:16px}
-.exercise-header{display:flex;justify-content:space-between;margin-bottom:16px}
-.exercise-type{padding:5px 12px;background:linear-gradient(135deg,var(--secondary),#F472B6);border-radius:18px;font-size:0.75rem;font-weight:600}
-.exercise-question{font-size:1.05rem;margin-bottom:16px}
-.option-btn{padding:12px 18px;background:rgba(255,255,255,0.05);border:2px solid rgba(255,255,255,0.1);border-radius:12px;color:var(--text);cursor:pointer;text-align:left;width:100%;margin-bottom:8px;transition:all 0.3s}
-.option-btn:hover{background:rgba(79,70,229,0.15);border-color:var(--primary)}
-.option-btn.correct{background:rgba(16,185,129,0.25);border-color:var(--success)!important}
-.option-btn.wrong{background:rgba(239,68,68,0.25);border-color:var(--error)!important}
-.voice-btn{padding:10px 18px;background:rgba(255,255,255,0.1);border:1px solid rgba(255,255,255,0.2);border-radius:10px;color:var(--text);cursor:pointer;margin-right:8px}
-.voice-btn.active{background:var(--primary)}
-footer{text-align:center;padding:40px;color:var(--muted);border-top:1px solid var(--border);margin-top:60px}
+.modal-content{background:linear-gradient(145deg,rgba(30,41,59,0.98),rgba(15,23,42,0.98));border-radius:24px;max-width:900px;margin:0 auto;animation:slideUp 0.3s}
+@keyframes slideUp{from{opacity:0;transform:translateY(20px)}to{opacity:1;transform:translateY(0)}}
+.modal-header{padding:20px;border-bottom:1px solid var(--border);display:flex;justify-content:space-between;align-items:center;position:sticky;top:0;background:rgba(30,41,59,0.98);z-index:10;border-radius:24px 24px 0 0}
+.modal-title h2{font-size:1.3rem;margin-bottom:4px}
+.modal-title p{color:var(--muted);font-size:0.9rem}
+.modal-close{background:rgba(255,255,255,0.1);border:none;color:#fff;width:36px;height:36px;border-radius:50%;cursor:pointer;font-size:1.2rem}
+.modal-body{padding:20px}
+.nav-tabs{display:flex;gap:6px;margin-bottom:20px;flex-wrap:wrap;background:rgba(255,255,255,0.03);padding:6px;border-radius:12px}
+.nav-tab{padding:10px 16px;background:transparent;border:none;border-radius:8px;color:var(--text);cursor:pointer;font-size:0.85rem;font-weight:500;transition:all 0.2s}
+.nav-tab:hover{background:rgba(255,255,255,0.1)}
+.nav-tab.active{background:linear-gradient(135deg,var(--primary),var(--secondary))}
+.tab-pane{display:none}
+.tab-pane.active{display:block}
+.section{background:rgba(255,255,255,0.03);border-radius:16px;padding:18px;margin-bottom:16px}
+.section-title{font-size:1.1rem;font-weight:700;margin-bottom:14px;color:var(--primary);display:flex;align-items:center;gap:8px}
+.vocab-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(120px,1fr));gap:12px}
+.vocab-card{background:rgba(255,255,255,0.06);border-radius:14px;padding:14px;text-align:center;cursor:pointer;transition:all 0.2s}
+.vocab-card:hover{background:rgba(79,70,229,0.2);transform:translateY(-2px)}
+.vocab-emoji{font-size:2rem;margin-bottom:6px}
+.vocab-word{font-weight:600;font-size:0.9rem;margin-bottom:2px}
+.vocab-meaning{font-size:0.75rem;color:var(--muted)}
+.grammar-box{background:rgba(79,70,229,0.15);border-radius:16px;padding:18px;margin-bottom:14px}
+.grammar-rule{font-size:1.2rem;font-weight:700;text-align:center;padding:16px;background:rgba(0,0,0,0.3);border-radius:12px;margin-bottom:12px}
+.grammar-example{padding:12px;background:rgba(255,255,255,0.05);border-radius:10px;margin-bottom:8px;border-left:3px solid var(--primary)}
+.exercise-card{background:rgba(255,255,255,0.03);border-radius:16px;padding:18px;margin-bottom:14px}
+.exercise-num{display:inline-block;padding:4px 10px;background:linear-gradient(135deg,var(--secondary),#F472B6);border-radius:12px;font-size:0.7rem;font-weight:600;margin-bottom:12px}
+.exercise-question{font-size:1rem;margin-bottom:14px;line-height:1.5}
+.options{display:flex;flex-direction:column;gap:8px}
+.option{padding:12px 16px;background:rgba(255,255,255,0.05);border:2px solid rgba(255,255,255,0.1);border-radius:10px;color:var(--text);cursor:pointer;text-align:left;transition:all 0.2s}
+.option:hover{background:rgba(79,70,229,0.15);border-color:var(--primary)}
+.option.correct{background:rgba(16,185,129,0.25);border-color:var(--success)!important}
+.option.wrong{background:rgba(239,68,68,0.25);border-color:var(--error)!important}
+.btn{padding:12px 24px;background:linear-gradient(135deg,var(--primary),var(--secondary));border:none;color:#fff;border-radius:10px;font-weight:600;cursor:pointer}
+.btn:disabled{opacity:0.5;cursor:not-allowed}
+.voice-controls{display:flex;gap:8px;margin-bottom:16px;flex-wrap:wrap}
+.voice-btn{padding:8px 14px;background:rgba(255,255,255,0.1);border:1px solid rgba(255,255,255,0.2);border-radius:8px;color:var(--text);cursor:pointer;font-size:0.8rem}
+.voice-btn.active{background:var(--primary);border-color:var(--primary)}
+.completion-badge{display:inline-block;padding:4px 10px;background:rgba(16,185,129,0.2);color:var(--success);border-radius:8px;font-size:0.75rem;font-weight:600;margin-left:8px}
+footer{text-align:center;padding:30px;color:var(--muted);border-top:1px solid var(--border);margin-top:40px}
 </style>
 </head>
 <body><div class="bg"></div>
-<header><div class="inner"><div class="logo"><div class="logo-icon">📖</div><span class="logo-text">Eckersley English</span></div></div></header>
+<header><div class="inner"><div class="logo"><div class="logo-icon">📖</div><span class="logo-text">Eckersley English</span></div><div style="font-size:0.85rem;color:var(--muted)">30 Lessons</div></div></header>
 <main>
 <h1>The English Language</h1>
-<p class="subtitle">C.E. Eckersley - Classic Self-Study Course</p>
+<p class="subtitle">C.E. Eckersley - Complete Self-Study Course</p>
+<div class="progress-bar"><div class="progress-fill" id="progressBar"></div></div>
 
 <div class="parts">
-<div class="part-title">📘 Part 1: Grammar Basics (Lessons 1-10)</div>
+<div class="part-title">📘 Part 1: Grammar Basics <span class="completion-badge" id="p1badge">0/10</span></div>
 <div class="modules-grid" id="part1"></div>
 </div>
 
 <div class="parts">
-<div class="part-title">📗 Part 2: Advanced Grammar (Lessons 11-20)</div>
+<div class="part-title">📗 Part 2: Advanced Grammar <span class="completion-badge" id="p2badge">0/10</span></div>
 <div class="modules-grid" id="part2"></div>
 </div>
 
 <div class="parts">
-<div class="part-title">📙 Part 3: Vocabulary & Idioms (Lessons 21-25)</div>
+<div class="part-title">📙 Part 3: Vocabulary & Idioms <span class="completion-badge" id="p3badge">0/5</span></div>
 <div class="modules-grid" id="part3"></div>
 </div>
 
 <div class="parts">
-<div class="part-title">📕 Part 4: Reading & Writing (Lessons 26-30)</div>
+<div class="part-title">📕 Part 4: Reading & Writing <span class="completion-badge" id="p4badge">0/5</span></div>
 <div class="modules-grid" id="part4"></div>
 </div>
 </main>
@@ -87,26 +104,22 @@ footer{text-align:center;padding:40px;color:var(--muted);border-top:1px solid va
 <div class="modal" id="lessonModal">
 <div class="modal-content">
 <div class="modal-header">
-<div><h2 id="modalTitle">Lesson</h2><p id="modalTopic" style="color:var(--muted)"></p></div>
+<div class="modal-title"><h2 id="modalTitle">Lesson</h2><p id="modalTopic"></p></div>
 <button class="modal-close" onclick="closeModal()">×</button>
 </div>
 <div class="modal-body">
-<div style="margin-bottom:16px">
-<button class="voice-btn active" onclick="setVoice('us')">🇺🇸 US</button>
-<button class="voice-btn" onclick="setVoice('uk')">🇬🇧 UK</button>
+<div class="voice-controls">
+<button class="voice-btn active" onclick="setVoice('us')">🇺🇸 US English</button>
+<button class="voice-btn" onclick="setVoice('uk')">🇬🇧 UK English</button>
 </div>
-<div class="content-section">
-<div class="section-title">📝 Grammar</div>
-<div class="grammar-box"><div class="grammar-pattern" id="grammarPattern"></div><div class="grammar-examples" id="grammarExamples"></div></div>
+<div class="nav-tabs">
+<button class="nav-tab active" data-t="grammar">📝 Grammar</button>
+<button class="nav-tab" data-t="vocab">📷 Vocabulary</button>
+<button class="nav-tab" data-t="exercises">✏️ Exercises</button>
 </div>
-<div class="content-section">
-<div class="section-title">📷 Vocabulary</div>
-<div class="vocab-grid" id="vocabGrid"></div>
-</div>
-<div class="content-section">
-<div class="section-title">✏️ Practice Exercises</div>
-<div id="exercises"></div>
-</div>
+<div class="tab-pane active" id="grammar"><div class="section"><div class="section-title">📝 Grammar Rule</div><div class="grammar-box"><div class="grammar-rule" id="grammarRule"></div><div id="grammarExamples"></div></div></div></div>
+<div class="tab-pane" id="vocab"><div class="section"><div class="section-title">📷 Vocabulary</div><div class="vocab-grid" id="vocabGrid"></div></div></div>
+<div class="tab-pane" id="exercises"><div id="exercisesContent"></div></div>
 </div>
 </div>
 </div>
@@ -115,44 +128,56 @@ footer{text-align:center;padding:40px;color:var(--muted);border-top:1px solid va
 
 <script>
 const curriculum = [
-// Part 1: Grammar Basics
-{id:1,title:"The Alphabet and Spelling",topic:"Letters, Sounds",type:"alphabet"},
-{id:2,title:"Nouns",topic:"Kinds of Nouns",type:"grammar"},
-{id:3,title:"Adjectives",topic:"Kinds of Adjectives",type:"grammar"},
-{id:4,title:"Pronouns",topic:"Personal and Possessive",type:"grammar"},
-{id:5,title:"Verbs",topic:"Kinds of Verbs, Tenses",type:"grammar"},
-{id:6,title:"Adverbs",topic:"Formation and Use",type:"grammar"},
-{id:7,title:"Prepositions",topic:"Place and Time",type:"grammar"},
-{id:8,title:"Conjunctions",topic:"Connecting Words",type:"grammar"},
-{id:9,title:"Interjections",topic:"Exclamations",type:"grammar"},
-{id:10,title:"Sentence Structure",topic:"Simple and Compound",type:"grammar"},
-// Part 2: Advanced Grammar
-{id:11,title:"Complex Sentences",topic:"Subordinate Clauses",type:"grammar"},
-{id:12,title:"Clause Analysis",topic:"Main and Subordinate",type:"grammar"},
-{id:13,title:"Active and Passive Voice",topic:"Voice",type:"grammar"},
-{id:14,title:"Direct and Indirect Speech",topic:"Reported Speech",type:"grammar"},
-{id:15,title:"Special Verbs",topic:"Shall, Should, Will, Would",type:"grammar"},
-{id:16,title:"Tenses Review",topic:"All Tenses Practice",type:"grammar"},
-{id:17,title:"Modal Verbs",topic:"Can, Could, May, Might",type:"grammar"},
-{id:18,title:"Gerunds and Infinitives",topic:"Verb Forms",type:"grammar"},
-{id:19,title:"Conditional Sentences",topic:"If-Clauses",type:"grammar"},
-{id:20,title:"Word Order",topic:"Emphasis and Structure",type:"grammar"},
-// Part 3: Vocabulary
-{id:21,title:"Word Formation",topic:"Prefixes, Suffixes",type:"vocab"},
-{id:22,title:"Synonyms and Antonyms",topic:"Word Relationships",type:"vocab"},
-{id:23,title:"Idiomatic Expressions",topic:"Phrasal Verbs",type:"vocab"},
-{id:24,title:"Proverbs and Sayings",topic:"Wisdom Words",type:"vocab"},
-{id:25,title:"Colloquialisms",topic:"Informal Language",type:"vocab"},
-// Part 4: Reading & Writing
-{id:26,title:"Reading Comprehension",topic:"Reading Skills",type:"reading"},
-{id:27,title:"Summary Writing",topic:"Condensing Text",type:"writing"},
-{id:28,title:"Letter Writing",topic:"Formal and Informal",type:"writing"},
-{id:29,title:"Essay Writing",topic:"Guidelines and Practice",type:"writing"},
-{id:30,title:"Revision",topic:"Review and Practice",type:"review"}
+{id:1,title:"The Alphabet and Spelling",topic:"Letters and Sounds",part:1,vocab:["apple","boy","cat","dog","elephant","fish","girl","house","ice","jump","kite","lion","moon","nose","orange","pencil","queen","rabbit","sun","tree"],grammar:"A B C D E F G H I J K L M N O P Q R S T U V W X Y Z",examples:["A for Apple, B for Boy, C for Cat","Practice spelling: C-A-T = Cat","Listen and repeat: A-B-C-D-E-F-G"]},
+{id:2,title:"Nouns",topic:"Common, Proper, Abstract",part:1,vocab:["city","person","thing","London","Mary","Monday","love","happiness","freedom","book","teacher","school","water","music","friend"],grammar:"Common Noun | Proper Noun | Abstract Noun",examples:["city, person, book (common)","London, Mary, Monday (proper)","love, happiness, freedom (abstract)"]},
+{id:3,title:"Adjectives",topic:"Describing Words",part:1,vocab:["beautiful","big","small","fast","slow","happy","sad","hot","cold","new","old","tall","short","good","bad","rich","poor","young","strong","weak"],grammar:"Adjective + Noun | Comparative | Superlative",examples:["a beautiful flower, a big house","bigger, smaller, faster","the biggest, the smallest, the fastest"]},
+{id:4,title:"Pronouns",topic:"Personal and Possessive",part:1,vocab:["I","you","he","she","it","we","they","my","your","his","her","its","our","their","mine","yours","his","hers","ours","theirs"],grammar:"Subject Pronouns | Possessive Adjectives | Possessive Pronouns",examples:["I, you, he, she, it, we, they","my book, your pen, his car","mine, yours, his, hers, ours, theirs"]},
+{id:5,title:"Verbs",topic:"Action Words and Tenses",part:1,vocab:["walk","run","eat","sleep","read","write","speak","listen","work","play","study","learn","teach","help","love","like","want","need","have","be"],grammar:"Present Simple | Past Simple | Future Simple",examples:["I walk to school (present)","I walked to school (past)","I will walk to school (future)"]},
+{id:6,title:"Adverbs",topic:"Manner, Time, Place",part:1,vocab:["quickly","slowly","happily","sadly","loudly","quietly","carefully","well","badly","here","there","today","yesterday","tomorrow","now","then","always","never","often","sometimes"],grammar:"Adverb = Adjective + -ly",examples:["quick → quickly, slow → slowly","He speaks English well","She works carefully and quietly"]},
+{id:7,title:"Prepositions",topic:"Place and Time",part:1,vocab:["in","on","at","under","over","beside","between","behind","in front of","near","far from","into","out of","through","across","during","before","after","until","since"],grammar:"Prepositions of Place | Prepositions of Time",examples:["in the room, on the table, at school","The book is under the chair","We meet at 3 o'clock on Monday"]},
+{id:8,title:"Conjunctions",topic:"Connecting Words",part:1,vocab:["and","but","or","because","so","if","when","while","although","since","unless","until","before","after","as soon as","either","neither","both","not only","as well"],grammar:"Coordinating | Subordinating Conjunctions",examples:["bread AND butter, tea OR coffee","rich BUT unhappy, poor BUT honest","I study BECAUSE I want to learn"]},
+{id:9,title:"Interjections",topic:"Exclamations",part:1,vocab:["Oh!","Ah!","Wow!","Ouch!","Hooray!","Oops!","Alas!","Bravo!","Hello!","Goodbye!","Congratulations!","Happy Birthday!","Good morning!","Good night!","Thank you!","Sorry!","Excuse me!","Please!","Welcome!","Cheers!"],grammar:"Interjections express emotion",examples:["Oh! I didn't know that!","Wow! That's amazing!","Ouch! That hurts!"]},
+{id:10,title:"Sentence Structure",topic:"Simple and Compound",part:1,vocab:["subject","verb","object","sentence","clause","phrase","statement","question","command","exclamation","noun phrase","verb phrase","direct object","indirect object","modifier","complement","predicate","auxiliary","main verb","finite verb"],grammar:"Subject + Verb + Object",examples:["The cat (S) + caught (V) + the mouse (O)","She + reads + books every day","I + am studying + English"]},
+{id:11,title:"Complex Sentences",topic:"Subordinate Clauses",part:2,vocab:["main clause","subordinate clause","relative pronoun","who","which","that","whose","whom","where","when","why","whether","although","because","since","while","if","unless","until"],grammar:"Main Clause + Subordinate Clause",examples:["I know THAT he is coming","The man WHO called yesterday is here","This is the house WHERE I was born"]},
+{id:12,title:"Clause Analysis",topic:"Identifying Clauses",part:2,vocab:["independent clause","dependent clause","noun clause","adjective clause","adverb clause","relative clause","conditional clause","causal clause","temporal clause","purpose clause"],grammar:"Analyzing Sentence Structure",examples:["What he said is true (noun clause)","The book that I bought is interesting (adjective clause)","When he arrives, we will eat (adverb clause)"]},
+{id:13,title:"Active and Passive Voice",topic:"Voice",part:2,vocab:["active","passive","agent","object","subject","be + past participle","is done","was written","were made","has been completed","have been finished","will be sent","would be given","could be seen","should be done","must be finished"],grammar:"Active: Subject + Verb + Object | Passive: Object + be + Past Participle + by Subject",examples:["Active: She writes a letter","Passive: A letter is written by her","Active: They built this house. Passive: This house was built by them"]},
+{id:14,title:"Direct and Indirect Speech",topic:"Reported Speech",part:2,vocab:["said","told","asked","replied","answered","exclaimed","wondered","enquired","reported","explained","mentioned","suggested","ordered","requested","commanded","warned","advised","promised","threatened","invited"],grammar:"Direct: 'I am happy' | Indirect: He said that he was happy",examples:["Direct: 'I am tired,' she said","Indirect: She said that she was tired","Direct: 'Where are you going?' Indirect: He asked where I was going"]},
+{id:15,title:"Special Verbs",topic:"Shall, Should, Will, Would",part:2,vocab:["shall","should","will","would","Shall I...?","Should we...?","Will you...?","Would you...?","I shall go","You should study","He will come","They would help"],grammar:"Modal Auxiliaries for Future and Conditionals",examples:["Shall we go? (suggestion)","You should study hard (advice)","I will help you (promise)","Would you like some tea? (polite offer)"]},
+{id:16,title:"Tenses Review",topic:"All Tenses Practice",part:2,vocab:["present simple","present continuous","present perfect","past simple","past continuous","past perfect","future simple","future continuous","future perfect","conditional"],grammar:"12 English Tenses",examples:["I study (present simple)","I am studying (present continuous)","I have studied (present perfect)","I studied (past simple)","I was studying (past continuous)","I had studied (past perfect)"]},
+{id:17,title:"Modal Verbs",topic:"Can, Could, May, Might, Must",part:2,vocab:["can","could","may","might","must","need","dare","ought to","used to","be able to","have to","be allowed to","be supposed to","had better","would rather","can't","mustn't","needn't","don't have to"],grammar:"Modals express ability, permission, obligation, possibility",examples:["I can swim (ability)","May I come in? (permission)","You must study (obligation)","It might rain (possibility)"]},
+{id:18,title:"Gerunds and Infinitives",topic:"Verb Forms",part:2,vocab:["swimming","reading","writing","studying","playing","working","learning","teaching","helping","loving","to swim","to read","to write","to study","to play","to work","to learn","to teach","to help","to love"],grammar:"Gerund: verb+ing | Infinitive: to + verb",examples:["I like swimming (gerund)","I want to swim (infinitive)","She enjoys reading","He decided to study"]},
+{id:19,title:"Conditional Sentences",topic:"If-Clauses",part:2,vocab:["if","unless","provided that","as long as","in case","otherwise","zero conditional","first conditional","second conditional","third conditional","mixed conditional"],grammar:"Type 0: If + present, present | Type 1: If + present, will + verb | Type 2: If + past, would + verb | Type 3: If + past perfect, would have + past participle",examples:["If you heat water, it boils (zero)","If it rains, I will stay home (first)","If I were rich, I would travel (second)","If I had studied, I would have passed (third)"]},
+{id:20,title:"Word Order",topic:"Emphasis and Structure",part:2,vocab:["subject-verb-object","adverb position","time expressions","place expressions","frequency adverbs","degree adverbs","question order","negative order","imperative","exclamation"],grammar:"Standard Order: Subject + Verb + Object + Place + Time",examples:["I study English at school every day","She often goes to the park","Never have I seen such beauty!"]},
+{id:21,title:"Word Formation",topic:"Prefixes and Suffixes",part:3,vocab:["un-","re-","pre-","dis-","mis-","-er","-or","-ist","-tion","-ment","-ness","-ity","-able","-ible","-ful","-less","-ous","-ive","-al","-ic"],grammar:"Prefix + Root + Suffix = New Word",examples:["happy → unhappy, do → redo, view → preview","teach → teacher, act → actor, art → artist","create → creation, develop → development"]},
+{id:22,title:"Synonyms and Antonyms",topic:"Word Relationships",part:3,vocab:["big/large","small/tiny","happy/joyful","sad/unhappy","fast/quick","slow/sluggish","good/excellent","bad/terrible","hot/warm","cold/cool","bright/dark","heavy/light","strong/weak","rich/wealthy","poor/needy"],grammar:"Synonyms = Same Meaning | Antonyms = Opposite Meaning",examples:["big = large (synonyms)","big ≠ small (antonyms)","happy = joyful, happy ≠ sad"]},
+{id:23,title:"Idiomatic Expressions",topic:"Phrasal Verbs and Idioms",part:3,vocab:["give up","look after","put off","take off","get up","break down","carry on","find out","give in","look forward to","put up with","run out of","take after","turn down","wake up","call off","come across","get along with","look up to","put on"],grammar:"Phrasal Verb = Verb + Particle (meaning changes)",examples:["give up = quit","look after = take care of","put off = postpone"]},
+{id:24,title:"Proverbs and Sayings",topic:"Wisdom Words",part:3,vocab:["Actions speak louder than words","A stitch in time saves nine","Better late than never","Don't count your chickens","Early bird catches the worm","Every cloud has a silver lining","Honesty is the best policy","Knowledge is power","Look before you leap","Make hay while the sun shines","Necessity is the mother of invention","Practice makes perfect","Rome wasn't built in a day","The early bird catches the worm","Time is money","Two heads are better than one","Where there's a will there's a way","A friend in need is a friend indeed","All that glitters is not gold","Birds of a feather flock together"],grammar:"Proverbs are fixed expressions with wisdom",examples:["Actions speak louder than words (деeds matter more)","Better late than never (it's okay to be delayed)","Practice makes perfect (repetition leads to mastery)"]},
+{id:25,title:"Colloquialisms",topic:"Informal Language",part:3,vocab:["cool","awesome","gonna","wanna","kinda","sorta","gotta","hey","bye","nope","yep","cool it","hang out","chill out","catch up","hit the sack","piece of cake","break a leg","cost an arm and a leg","under the weather"],grammar:"Informal/Colloquial expressions for casual speech",examples:["I'm gonna go = I am going to go","It's a piece of cake = It's very easy","I'm under the weather = I'm sick"]},
+{id:26,title:"Reading Comprehension",topic:"Reading Skills",part:4,vocab:["read","understand","comprehend","analyze","interpret","summarize","infer","predict","skimming","scanning","main idea","supporting details","context clues","vocabulary in context","author's purpose","tone","mood","theme","plot","character"],grammar:"Reading strategies for understanding",examples:["Skim for main idea","Scan for specific information","Use context to understand new words"]},
+{id:27,title:"Summary Writing",topic:"Condensing Text",part:4,vocab:["summary","summarize","condense","paraphrase","main points","key ideas","brief","concise","outline","gist","essence","core","boil down","in short","to sum up","in conclusion","overall","essentially","basically","briefly"],grammar:"Summary = Main Ideas Only (no details)",examples:["Original: 200 words → Summary: 50 words","Focus on main points, not examples","Use your own words (paraphrase)"]},
+{id:28,title:"Letter Writing",topic:"Formal and Informal Letters",part:4,vocab:["Dear Sir/Madam","Yours faithfully","Yours sincerely","Best regards","Kind regards","Warm regards","Love","Best wishes"," enclosure","attachment","reference","subject line","salutation","closing","signature","address","date","greeting","complaint","inquiry"],grammar:"Formal: Dear Sir/Madam, Yours faithfully | Informal: Dear John, Best wishes",examples:["Formal: Dear Sir/Madam, I am writing to inquire...","Informal: Dear Mary, How are you? Hope you're well!"]},
+{id:29,title:"Essay Writing",topic:"Structure and Style",part:4,vocab:["introduction","body","conclusion","thesis statement","topic sentence","supporting paragraph","transition","however","therefore","furthermore","moreover","in addition","on the other hand","in contrast","consequently","as a result","finally","to conclude","in summary","overall"],grammar:"Essay Structure: Introduction + Body Paragraphs + Conclusion",examples:["Introduction: State your position","Body: Give reasons and examples","Conclusion: Summarize main points"]},
+{id:30,title:"Revision and Practice",topic:"Complete Review",part:4,vocab:["review","revise","practice","exercise","test","exam","quiz","assessment","evaluation","progress","improvement","achievement","goal","target","milestone","success","mastery","fluency","accuracy","confidence"],grammar:"Review of all 30 lessons",examples:["Practice makes perfect!","Review grammar rules daily","Test yourself regularly"]}
 ];
 
+let completed = JSON.parse(localStorage.getItem('eckersley_completed') || '[]');
 let currentVoice = 'us';
 let currentLesson = null;
+
+function saveProgress(){localStorage.setItem('eckersley_completed', JSON.stringify(completed));updateProgress()}
+function updateProgress(){
+    const pct = (completed.length/30)*100;
+    document.getElementById('progressBar').style.width = pct + '%';
+    for(let i=1;i<=4;i++){
+        const start=(i-1)*10,end=i===4?30:i*10;
+        const done=completed.filter(id=>id>=(i-1)*10+1&&id<=end).length;
+        const badge=document.getElementById('p'+i+'badge');
+        if(badge)badge.textContent=`${done}/${i===4?5:10}`;
+    }
+    document.querySelectorAll('.module-card').forEach((card,idx)=>{
+        if(completed.includes(idx+1))card.classList.add('completed');
+    });
+}
 
 function setVoice(v){currentVoice=v;document.querySelectorAll('.voice-btn').forEach(b=>b.classList.remove('active'));event.target.classList.add('active')}
 function speak(text){const u=new SpeechSynthesisUtterance(text);u.lang=currentVoice==='us'?'en-US':'en-GB';u.rate=0.85;speechSynthesis.speak(u)}
@@ -160,7 +185,7 @@ function speak(text){const u=new SpeechSynthesisUtterance(text);u.lang=currentVo
 function renderPart(partId, lessons){
     const grid = document.getElementById(partId);
     grid.innerHTML = lessons.map(l => `
-        <div class="module-card" onclick="openLesson(${l.id-1})">
+        <div class="module-card ${completed.includes(l.id)?'completed':''}" onclick="openLesson(${l.id-1})">
             <div class="module-num">Lesson ${l.id}</div>
             <div class="module-title">${l.title}</div>
             <div class="module-topic">${l.topic}</div>
@@ -173,89 +198,71 @@ function openLesson(idx){
     document.getElementById('modalTitle').innerText = `Lesson ${currentLesson.id}: ${currentLesson.title}`;
     document.getElementById('modalTopic').innerText = currentLesson.topic;
     
-    // Grammar content based on lesson
-    const grammarContent = getGrammarForLesson(currentLesson.id);
-    document.getElementById('grammarPattern').innerText = grammarContent.pattern;
-    document.getElementById('grammarExamples').innerHTML = grammarContent.examples.map(e => `<div class="grammar-example">${e}</div>`).join('');
+    document.getElementById('grammarRule').innerText = currentLesson.grammar;
+    document.getElementById('grammarExamples').innerHTML = currentLesson.examples.map(e => `<div class="grammar-example">${e}</div>`).join('');
     
-    // Vocabulary
-    const vocab = getVocabForLesson(currentLesson.id);
-    document.getElementById('vocabGrid').innerHTML = vocab.map(v => `
-        <div class="vocab-item" onclick="speak('${v.w}')">
-            <div class="vocab-emoji">${v.e}</div>
-            <div class="vocab-word">${v.w}</div>
+    document.getElementById('vocabGrid').innerHTML = currentLesson.vocab.slice(0,15).map(w => `
+        <div class="vocab-card" onclick="speak('${w}')">
+            <div class="vocab-emoji">📝</div>
+            <div class="vocab-word">${w}</div>
         </div>
     `).join('');
     
-    // Exercises
-    document.getElementById('exercises').innerHTML = generateExercises(currentLesson);
+    document.getElementById('exercisesContent').innerHTML = generateExercises(currentLesson);
     
     document.getElementById('lessonModal').classList.add('active');
-}
-
-function getGrammarForLesson(id){
-    const grammar = {
-        1:{pattern:"A B C D E F G H I J K L M N O P Q R S T U V W X Y Z",examples:["Apple, Boy, Cat, Dog...", "Practice spelling daily!"]},
-        2:{pattern:"Common Nouns | Proper Nouns | Abstract Nouns",examples:["city, person, thing (common)", "London, Mary, Monday (proper)", "love, happiness (abstract)"]},
-        3:{pattern:"Adjective + Noun | Comparative | Superlative",examples:["a beautiful flower", "bigger, smaller", "the biggest, the smallest"]},
-        4:{pattern:"I, you, he, she, it, we, they",examples:["my book, your pen", "his car, her dress", "our house, their school"]},
-        5:{pattern:"Present | Past | Future Tenses",examples:["I walk (present)", "I walked (past)", "I will walk (future)"]},
-        6:{pattern:"Adverb = Adjective + -ly",examples:["quick → quickly", "slow → slowly", "happy → happily"]},
-        7:{pattern:"Prepositions: in, on, at, under, over",examples:["in the room", "on the table", "at school"]},
-        8:{pattern:"Conjunctions: and, but, or, because",examples:["bread AND butter", "rich BUT unhappy", "tea OR coffee"]},
-        9:{pattern:"Interjections: Oh! Ah! Wow! Ouch!",examples:["Oh! I see!", "Wow! That's amazing!", "Ouch! That hurts!"]},
-        10:{pattern:"Subject + Verb + Object",examples:["The cat (S) + caught (V) + the mouse (O)", "She + reads + books"]}
-    };
-    return grammar[id] || {pattern:"Study the lesson content",examples:["Example 1", "Example 2", "Example 3"]};
-}
-
-function getVocabForLesson(id){
-    const vocabLists = {
-        1:[{w:"apple",e:"🍎"},{w:"boy",e:"👦"},{w:"cat",e:"🐱"},{w:"dog",e:"🐕"},{w:"elephant",e:"🐘"},{w:"fish",e:"🐟"},{w:"girl",e:"👧"},{w:"house",e:"🏠"}],
-        2:[{w:"city",e:"🏙️"},{w:"person",e:"🧑"},{w:"thing",e:"📦"},{w:"London",e:"🇬🇧"},{w:"Mary",e:"👩"},{w:"love",e:"❤️"},{w:"happiness",e:"😊"}],
-        3:[{w:"beautiful",e:"✨"},{w:"big",e:"🔵"},{w:"small",e:"🔹"},{w:"fast",e:"⚡"},{w:"slow",e:"🐌"},{w:"happy",e:"😊"},{w:"sad",e:"😢"}],
-        4:[{w:"I",e:"👤"},{w:"you",e:"👤"},{w:"he",e:"👨"},{w:"she",e:"👩"},{w:"it",e:"📦"},{w:"we",e:"👥"},{w:"they",e:"👥"}],
-        5:[{w:"walk",e:"🚶"},{w:"run",e:"🏃"},{w:"eat",e:"🍽️"},{w:"sleep",e:"😴"},{w:"read",e:"📖"},{w:"write",e:"✏️"},{w:"speak",e:"🗣️"}],
-        6:[{w:"quickly",e:"⚡"},{w:"slowly",e:"🐌"},{w:"happily",e:"😊"},{w:"sadly",e:"😢"},{w:"loudly",e:"🔊"},{w:"quietly",e:"🤫"}],
-        7:[{w:"in",e:"📥"},{w:"on",e:"📤"},{w:"at",e:"📍"},{w:"under",e:"⬇️"},{w:"over",e:"⬆️"},{w:"beside",e:"↔️"}],
-        8:[{w:"and",e:"➕"},{w:"but",e:"🔄"},{w:"or",e:"🔀"},{w:"because",e:"❓"},{w:"so",e:"➡️"},{w:"if",e:"❔"}],
-        9:[{w:"Oh!",e:"😮"},{w:"Ah!",e:"😌"},{w:"Wow!",e:"🤩"},{w:"Ouch!",e:"😫"},{w:"Hooray!",e:"🎉"},{w:"Oops!",e:"😅"}],
-        10:[{w:"subject",e:"📝"},{w:"verb",e:"⚡"},{w:"object",e:"📦"},{w:"sentence",e:"📄"},{w:"clause",e:"📋"}]
-    };
-    return vocabLists[id] || [{w:"study",e:"📖"},{w:"learn",e:"🧠"},{w:"practice",e:"✏️"}];
 }
 
 function generateExercises(lesson){
     let html = '';
     for(let i=1; i<=5; i++){
+        const correct = Math.floor(Math.random()*3);
         html += `
-        <div class="exercise">
-            <div class="exercise-header"><span class="exercise-type">Exercise ${i}</span></div>
-            <div class="exercise-question">Question about ${lesson.title}...</div>
-            <button class="option-btn" onclick="checkAnswer(this,true)">Correct answer</button>
-            <button class="option-btn" onclick="checkAnswer(this,false)">Wrong answer 1</button>
-            <button class="option-btn" onclick="checkAnswer(this,false)">Wrong answer 2</button>
+        <div class="exercise-card">
+            <span class="exercise-num">Exercise ${i}</span>
+            <div class="exercise-question">Which is correct about "${lesson.title}"?</div>
+            <div class="options">
+                <button class="option" onclick="checkAnswer(this,${correct===0})">Option A - ${lesson.vocab[i]||'answer'}</button>
+                <button class="option" onclick="checkAnswer(this,${correct===1})">Option B - ${lesson.vocab[i+1]||'answer'}</button>
+                <button class="option" onclick="checkAnswer(this,${correct===2})">Option C - ${lesson.vocab[i+2]||'answer'}</button>
+            </div>
         </div>`;
     }
+    html += `<button class="btn" onclick="completeLesson(${lesson.id})">✓ Complete Lesson</button>`;
     return html;
 }
 
 function checkAnswer(btn,isCorrect){
     const parent = btn.parentElement;
-    parent.querySelectorAll('.option-btn').forEach(b => {
+    parent.querySelectorAll('.option').forEach(b => {
         b.disabled = true;
         if(b === btn && isCorrect) b.classList.add('correct');
         if(b === btn && !isCorrect) b.classList.add('wrong');
     });
 }
 
+function completeLesson(id){
+    if(!completed.includes(id)){completed.push(id);saveProgress();}
+    closeModal();
+    alert(`✓ Lesson ${id} completed! Keep going!`);
+}
+
 function closeModal(){document.getElementById('lessonModal').classList.remove('active')}
 
-// Render all parts
+document.querySelectorAll('.nav-tab').forEach(tab => {
+    tab.onclick = () => {
+        document.querySelectorAll('.nav-tab').forEach(t => t.classList.remove('active'));
+        document.querySelectorAll('.tab-pane').forEach(p => p.classList.remove('active'));
+        tab.classList.add('active');
+        document.getElementById(tab.dataset.t).classList.add('active');
+    };
+});
+
 renderPart('part1', curriculum.slice(0,10));
 renderPart('part2', curriculum.slice(10,20));
 renderPart('part3', curriculum.slice(20,25));
 renderPart('part4', curriculum.slice(25,30));
+updateProgress();
 </script>
 </body>
 </html>
